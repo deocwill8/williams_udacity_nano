@@ -19,8 +19,10 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     //change in x
+    dt = dt * this.x
 
     //change in y 
+    dt = dt * this.x
 };
 
 // Draw the enemy on the screen, required method for game
@@ -32,26 +34,29 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player{
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
+    constructor() {
+        this.x = 220;
+        this.y = 440;
        
+        //update the position of the Player
         this.update = function(dt) {
 
             //change in x
 
              //change in y 
-
         }
+
+        // handle key inputs 
         this.handleInput = function() {
 
         }
 
+        // Draw the player on the screen, required method for game
         this.render = function() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         }
     
-        this.sprite = 'images/char-cat-girl.png';
+        this.sprite = 'images/char-horn-girl.png';
     }
 }
 // Now instantiate your objects.
@@ -67,7 +72,13 @@ class Player{
 // Place the player object in a variable called player
 var player = new Player();
 
+var playerCollision = function() {
 
+}
+
+var resetPlayerOnCollistion = function() {
+
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
