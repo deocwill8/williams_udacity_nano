@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Matching Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <!-- imported animate.css via npm to handle correct guesses -->
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Matching Game</h1>
+        </header>
+
+        <section class="score-panel">
+        	<ul class="stars">
+        		<li id="starOne"><i class="fa fa-star"></i></li>
+        		<li id="starTwo"><i class="fa fa-star"></i></li>
+        		<li id="starThree"><i class="fa fa-star"></i></li>
+        	</ul>
+
+            <span id="playersMoves" class="moves"></span> Moves
+            
+            <span class="timer">Time Left: </span> <span id="time_left"></span>
+
+            <div id="restartBtn" class="restart">
+        		<i class="fa fa-repeat"></i>
+        	</div>
+        </section>
+
+        <ul class="deck" id="deck">
+            <li class="card">
+                <i class="fa fa-diamond"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-paper-plane-o"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-anchor"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-bolt"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-cube"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-anchor"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-leaf"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-bicycle"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-diamond"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-bomb"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-leaf"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-bomb"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-bolt"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-bicycle"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-paper-plane-o"></i>
+            </li>
+            <li class="card">
+                <i class="fa fa-cube"></i>
+            </li>
+        </ul>
+    </div>
+
+<!-- Followed https://www.w3schools.com/howto/howto_css_modals.asp to create modal from scratch -->
+    <div id="modal" class="modal-container">
+        <div id="winnerInfo" class="modal-info">
+            <span id="exit" class="close-modal">
+                <i class="fa fa-times-circle"></i>
+            </span>
+            <h1 class="modal-title">Congratulations you have won the game!</h1>
+            <p id="congratsTimes"></p>
+            <p id="congratsRating"></p>
+            <button id="playAgain" class="play-again">Play again</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

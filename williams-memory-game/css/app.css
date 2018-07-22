@@ -1,0 +1,232 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png'); 
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+.timer{
+    margin-left: 15px;
+}
+
+/*
+ * Styles for the Modal
+ * Followed https://www.w3schools.com/howto/howto_css_modals.asp to create modal from scratch 
+ */
+
+ .modal-container {
+    display: none;
+    font-family: 'Courgette', cursive;
+    font-size: 1.3em;
+    position: fixed;
+    top: 291px;
+    left: 188px;
+    width: 69%;
+    height: 40%;
+    background-color: #f6efa6;
+    border: 2px solid black;
+}
+
+.modal-info{
+    width: 100%;
+    text-align: center;
+}
+
+.modal-title{
+    font-family: 'Courgette', cursive;
+    font-size: 1.5em;
+}
+
+.close-modal{
+    float: right;
+    margin-right: 15px;
+}
+
+.play-again {
+    font-family: 'Courgette', cursive;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #02ccba;
+}
+
+/*
+ * Media Queries 
+ */
+
+ /* Smaller screens such as phones  */
+
+ @media screen and (min-width: 0px) and (max-width: 360px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .score-panel {
+        width: 70%;
+    }
+
+    .timer {
+        margin-left: 2px;
+    }
+
+    .deck {
+        width: 70%; 
+    }
+
+    .deck .card {
+        height: 60px;
+        width: 60px;
+        margin-left: 2.77%;
+    }
+
+    .deck .card .show {
+        font-size: 1.8em;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 146px;
+        left: 16px;
+        height: 50%;
+        width: 93%;
+    }
+
+    
+ }
+
+ /* Tablets */
+
+ @media screen and (min-width: 361px) and (max-width: 768px) {
+     body {
+        overflow-x: hidden;
+     }
+
+     .deck {
+        width: 70%; 
+    }
+
+    .deck .card {
+        height: 89px;
+        width: 83px;
+        margin-left: 2.77%
+    }
+
+     .score-panel {
+        width: 488px;
+        font-size: 30px;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 223px;
+        left: 43px;
+        width: 90%;
+        height: 22%;
+    }
+
+    
+ }

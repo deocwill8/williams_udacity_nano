@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+  </head>
+  <body>
+    
+    <!-- header information: logo, name, occupation  -->
+    <header>
+      <div id="inner-header">
+        <div class="inner-header-logo">
+          <img 
+            id="profile_logo"
+            alt="profile logo" 
+            src="images/logo.JPG">
+        </div>
+        <div class="inner-header-text">
+          <h1>Deona Williams</h1>
+          <h4>Front-End Developer</h4>
+        </div>
+      </div>
+    </header> 
+    
+    <hr>
+     
+    <!-- meat and butter of the website -->
+    <main class="main-content-container">
+
+    <!-- hero image  -->
+     <section class="header-image-container">
+       <!-- image src is from 
+       https://www.flickr.com/photos/wocintechchat/25900684132/in/album-72157664006621903/ -->
+        <img 
+          srcset="images/hero-image-320w.jpg 320w,
+          images/hero-image-640w.jpg 640w,
+          images/hero-image-1024w.jpg 1024w"
+          src="images/hero-image-1024w.jpg" 
+          alt="header-image"
+          class="header-image">
+          <!-- did not include sizes so the computer would pick the correct image to include -->
+      </section>
+
+      <!-- featured work label -->
+      <div class="featured-work-label">
+        <h3>Featured Work</h3>
+      </div>
+
+       <!-- featured work list -->
+      <section class="featured-work-container">
+        <!-- All images are of my first website -->
+        <div class="feature-work-image-box" id="firstWebSite">
+          <a href="http://deonawilliams.com/#/intro">
+            <img src="images/first_website.png" alt="first website" class="feature-work-img">
+          </a>
+          <p class="feature-work-description">My first website</p>
+        </div>
+        <div class="feature-work-image-box">
+          <img src="images/first_website.png" alt="memory game" class="feature-work-img">
+          <p class="feature-work-description">Memory Game</p>
+        </div>
+        <div class="feature-work-image-box">
+          <img src="images/first_website.png" alt="feed reader tester" class="feature-work-img">
+          <p class="feature-work-description">Feed Reader Tester</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
