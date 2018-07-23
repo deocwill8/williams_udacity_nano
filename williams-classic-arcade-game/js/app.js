@@ -35,8 +35,16 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 class Player{
     constructor() {
-        this.x = 220;
-        this.y = 440;
+        this.sprite = 'images/char-horn-girl.png';
+        //initial postions taken from https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
+        // this.x = 220;
+        // this.y = 440;
+        this.step = 101;
+        this.jump = 83;
+        this.startX = this.step * 2;
+        this.startY = (this.jump * 5) - 20;
+        this.x = this.startX
+        this.y = this.startY;
        
         //update the position of the Player
         this.update = function(dt) {
@@ -46,17 +54,37 @@ class Player{
              //change in y 
         }
 
-        // handle key inputs 
-        this.handleInput = function() {
-
+        // handle key inputs to move player sprite
+        this.handleInput = function(keyCodeInput) {
+           //switch statement taken from  https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
+            switch(keyCodeInput) {
+                case "left":
+                if(this.x > 0){
+                    this.x -=this.step;
+                }
+                break;
+                case "up":
+                if(this.y > this.jump) {
+                    this.y -=this.jump;
+                }
+                break;
+                case "right":
+                if(this.x < this.step *4){
+                    this.x +=this.step;
+                }
+                break;
+                case "down":
+                if(this.y < this.jump * 4){
+                    this.y += this.jump;
+                }
+                break;
+            }
         }
 
         // Draw the player on the screen, required method for game
         this.render = function() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         }
-    
-        this.sprite = 'images/char-horn-girl.png';
     }
 }
 // Now instantiate your objects.
