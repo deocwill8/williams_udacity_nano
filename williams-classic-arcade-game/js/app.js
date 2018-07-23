@@ -4,8 +4,11 @@ var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x; //horizontal 
-    this.y = y; //vertical 
-    this.speed;
+    this.y = y + 55; //vertical 
+    this.speed = speed;
+    this.step = 101;
+    this.boundary = this.step * 5;
+    this.resetPos = -this.step;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -17,12 +20,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
-    //change in x
-    dt = dt * this.x
-
-    //change in y 
-    dt = dt * this.x
+    if(this.x < this.boundary){
+        this.x += this.speed *dt;
+    } else {
+        this.x = this.resetPos;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -89,11 +91,11 @@ class Player{
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const enemy1 = new Enemy(0,2);
-const enemy2 = new Enemy(0,5);
-const enemy3 = new Enemy(0,7);
-const enemy4 = new Enemy(0,11);
-allEnemies.push(enemy1)
+const enemy1 = new Enemy(0,55, 150);
+const enemy2 = new Enemy(83,105, 200);
+const enemy3 = new Enemy(166,160, 300);
+const enemy4 = new Enemy(249, 215, 350);
+allEnemies.push(enemy1, enemy2, enemy3, enemy4);
 // function createEnemies(n) { //number of enemies created
 //     var enemies = new Enemy()
 //     for (var i = 0; i < n; ++i) {
