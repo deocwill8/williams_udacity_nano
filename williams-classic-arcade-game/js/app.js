@@ -89,7 +89,11 @@ class Player{
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-//allEnemies = [new Enemy()]
+const enemy1 = new Enemy(0,2);
+const enemy2 = new Enemy(0,5);
+const enemy3 = new Enemy(0,7);
+const enemy4 = new Enemy(0,11);
+allEnemies.push(enemy1)
 // function createEnemies(n) { //number of enemies created
 //     var enemies = new Enemy()
 //     for (var i = 0; i < n; ++i) {
