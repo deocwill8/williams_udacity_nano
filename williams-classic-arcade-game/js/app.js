@@ -3,15 +3,16 @@ var allEnemies = [];
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = x; //horizontal 
-    this.y = y + 55; //vertical 
-    this.speed = speed;
-    this.step = 101;
-    this.boundary = this.step * 5;
-    this.resetPos = -this.step;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x = x; //horizontal 
+    this.y = y + 55; //vertical 
+    this.speed = speed;
+
+    // this.step = 101;
+    // this.boundary = this.step * 5;
+    // this.resetPos = -this.step;
 };
 
 // Update the enemy's position, required method for game
@@ -20,11 +21,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if(this.x < this.boundary){
-        this.x += this.speed *dt;
-    } else {
-        this.x = this.resetPos;
-    }
+
+    // if(this.x < this.boundary){
+    //     this.x += this.speed *dt;
+    // } else {
+    //     this.x = this.resetPos;
+    // }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -39,48 +41,45 @@ class Player{
     constructor() {
         this.sprite = 'images/char-horn-girl.png';
         //initial postions taken from https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
+        // this.step = 101;
+        // this.jump = 83;
+        // this.startX = this.step * 2;
+        // this.startY = (this.jump * 5) - 20;
+        // this.x = this.startX
+        // this.y = this.startY;
+
         // this.x = 220;
         // this.y = 440;
-        this.step = 101;
-        this.jump = 83;
-        this.startX = this.step * 2;
-        this.startY = (this.jump * 5) - 20;
-        this.x = this.startX
-        this.y = this.startY;
        
         //update the position of the Player
         this.update = function(dt) {
-
-            //change in x
-
-             //change in y 
         }
 
         // handle key inputs to move player sprite
         this.handleInput = function(keyCodeInput) {
            //switch statement taken from  https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
-            switch(keyCodeInput) {
-                case "left":
-                if(this.x > 0){
-                    this.x -=this.step;
-                }
-                break;
-                case "up":
-                if(this.y > this.jump) {
-                    this.y -=this.jump;
-                }
-                break;
-                case "right":
-                if(this.x < this.step *4){
-                    this.x +=this.step;
-                }
-                break;
-                case "down":
-                if(this.y < this.jump * 4){
-                    this.y += this.jump;
-                }
-                break;
-            }
+            // switch(keyCodeInput) {
+            //     case "left":
+            //     if(this.x > 0){
+            //         this.x -=this.step;
+            //     }
+            //     break;
+            //     case "up":
+            //     if(this.y > this.jump) {
+            //         this.y -=this.jump;
+            //     }
+            //     break;
+            //     case "right":
+            //     if(this.x < this.step *4){
+            //         this.x +=this.step;
+            //     }
+            //     break;
+            //     case "down":
+            //     if(this.y < this.jump * 4){
+            //         this.y += this.jump;
+            //     }
+            //     break;
+            // }
         }
 
         // Draw the player on the screen, required method for game
@@ -90,29 +89,19 @@ class Player{
     }
 }
 // Now instantiate your objects.
+const enemy1 = new Enemy(15,7,150);
+ const enemy2 = new Enemy(15,85,200);
+// const enemy3 = new Enemy(166,160, 300);
+// const enemy4 = new Enemy(249, 215, 350);
+const arrOfEnemyBugs = [enemy1, enemy2];
 // Place all enemy objects in an array called allEnemies
-const enemy1 = new Enemy(0,55, 150);
-const enemy2 = new Enemy(83,105, 200);
-const enemy3 = new Enemy(166,160, 300);
-const enemy4 = new Enemy(249, 215, 350);
-allEnemies.push(enemy1, enemy2, enemy3, enemy4);
-// function createEnemies(n) { //number of enemies created
-//     var enemies = new Enemy()
-//     for (var i = 0; i < n; ++i) {
-//         enemies[i] = new Enemy()
-//     }
-//     return enemies
-//   }
+arrOfEnemyBugs.forEach((enemyBug) => {
+    allEnemies.push(enemyBug)
+})
+console.log(allEnemies)
 // Place the player object in a variable called player
 var player = new Player();
 
-var playerCollision = function() {
-
-}
-
-var resetPlayerOnCollistion = function() {
-
-}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
