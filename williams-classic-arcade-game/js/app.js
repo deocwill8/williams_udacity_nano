@@ -51,18 +51,23 @@ class Player{
         //update the position of the Player
         this.update = function(dt) {
             //call collision function here to update the players position 
+            // reset player's postion when player makes it to the water
+            // if(this.y == 151){
+            //     this.x = 202;
+            //     this.y = 400;
+            // }
         }
 
         // handle key inputs to move player sprite
         this.handleInput = function(keyCodeInput) {
-            console.log( "x equals " + this.x + "," + "y equals " + this.y);
+            //console.log( "x equals " + this.x + "," + "y equals " + this.y);
             //console.log("key press hit " + keyCodeInput);
             if(keyCodeInput === 'left' && this.x > 0) {
                 console.log("left step " + this.x);
                 this.x = this.x - 101;
             } 
 
-            if(keyCodeInput == 'up'){
+            if(keyCodeInput == 'up' && this.y > 68){
                 console.log("up step " + this.y);
                 this.y = this.y - 83;
             } 
@@ -72,7 +77,7 @@ class Player{
                 this.x = this.x + 101;
             } 
             
-            if (keyCodeInput == 'down') {
+            if (keyCodeInput == 'down' && this.y < 400) {
                 console.log("down step " + this.y);
                 this.y = this.y + 83;
             }
