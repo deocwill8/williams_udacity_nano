@@ -1,7 +1,5 @@
 // Enemies our player must avoid
 var allEnemies = [];
-const canvasWidth = 505;
-const canvasHeight = 606; 
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -11,10 +9,6 @@ var Enemy = function(x, y, speed) {
     this.x = x; //horizontal 
     this.y = y + 55; //vertical 
     this.speed = speed;
-
-    // this.step = 101;
-    // this.boundary = this.step * 5;
-    // this.resetPos = -this.step;
 };
 
 // Update the enemy's position, required method for game
@@ -37,14 +31,6 @@ Enemy.prototype.render = function() {
 class Player{
     constructor(x, y) {
         this.sprite = 'images/char-horn-girl.png';
-        //initial postions taken from https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
-        // this.step = 101;
-        // this.jump = 83;
-        // this.startX = this.step * 2;
-        // this.startY = (this.jump * 5) - 20;
-        // this.x = this.startX
-        // this.y = this.startY;
-
         this.x = x;
         this.y = y;
        
@@ -121,18 +107,3 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
-
-
-
-// var Player = function() {
-//     this.update = function() {
-//     }
-//     this.render = function() {
-//         ctx.drawImage(Resources.get(this.sprite));
-//     }
-//     this.handleInput = function() {
-
-//     }
-//     this.sprite = 'images/char-cat-girl.png';
-// };
