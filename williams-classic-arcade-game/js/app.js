@@ -18,15 +18,10 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+   this.x = this.x + (this.speed * dt);
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
-    // if(this.x < this.boundary){
-    //     this.x += this.speed *dt;
-    // } else {
-    //     this.x = this.resetPos;
-    // }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -53,33 +48,28 @@ class Player{
        
         //update the position of the Player
         this.update = function(dt) {
+
         }
 
         // handle key inputs to move player sprite
         this.handleInput = function(keyCodeInput) {
-           //switch statement taken from  https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
-            // switch(keyCodeInput) {
-            //     case "left":
-            //     if(this.x > 0){
-            //         this.x -=this.step;
-            //     }
-            //     break;
-            //     case "up":
-            //     if(this.y > this.jump) {
-            //         this.y -=this.jump;
-            //     }
-            //     break;
-            //     case "right":
-            //     if(this.x < this.step *4){
-            //         this.x +=this.step;
-            //     }
-            //     break;
-            //     case "down":
-            //     if(this.y < this.jump * 4){
-            //         this.y += this.jump;
-            //     }
-            //     break;
-            // }
+            console.log("key press hit " + keyCodeInput);
+            if(keyCodeInput === 'left') {
+                this.x = this.x - 101;
+            } 
+
+            if(keyCodeInput == 'up'){
+                this.y = this.y - 83;
+            } 
+            
+            if(keyCodeInput === 'right'){ 
+                this.x = this.x + 101;
+            } 
+            
+            if (keyCodeInput == 'down') {
+                this.y = this.y + 83;
+            }
+
         }
 
         // Draw the player on the screen, required method for game
