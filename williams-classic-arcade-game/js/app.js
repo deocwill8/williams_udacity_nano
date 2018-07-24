@@ -6,18 +6,24 @@ var Enemy = function(x, y, speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = x; //horizontal 
-    this.y = y + 55; //vertical 
+    this.x = x;
+    this.y = y + 55; 
     this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-   this.x = this.x + (this.speed * dt);
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x = this.x + (this.speed * dt);
+    //console.log(this.x)
+    if(this.x >= 505){
+        this.x = -101;
+    } else{
+        this.x = this.x + (this.speed * dt);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -46,7 +52,7 @@ class Player{
 
         // handle key inputs to move player sprite
         this.handleInput = function(keyCodeInput) {
-            console.log( "x equals " + this.x + "," + "y equals " + this.y);
+            //console.log( "x equals " + this.x + "," + "y equals " + this.y);
             //console.log("key press hit " + keyCodeInput);
             if(keyCodeInput === 'left' && this.x > 0) {
                 //if(keyCodeInput === 'left') {
@@ -81,10 +87,10 @@ class Player{
     }
 }
 // Now instantiate your objects.
-const enemy1 = new Enemy(0,0,150);
-const enemy2 = new Enemy(0,83,200);
-const enemy3 = new Enemy(0,166,300);
-const enemy4 = new Enemy(0,249,350);
+const enemy1 = new Enemy(-101,0,150);
+const enemy2 = new Enemy(-101,83,100);
+const enemy3 = new Enemy(-101,166,150);
+const enemy4 = new Enemy(-101,249,100);
 const arrOfEnemyBugs = [enemy1, enemy2, enemy3, enemy4];
 // Place all enemy objects in an array called allEnemies
 arrOfEnemyBugs.forEach((enemyBug) => {
