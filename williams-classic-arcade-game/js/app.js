@@ -38,7 +38,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player{
-    constructor() {
+    constructor(x, y) {
         this.sprite = 'images/char-horn-girl.png';
         //initial postions taken from https://matthewcranford.com/arcade-game-walkthrough-part-4-heros-first-steps/
         // this.step = 101;
@@ -48,8 +48,8 @@ class Player{
         // this.x = this.startX
         // this.y = this.startY;
 
-        // this.x = 220;
-        // this.y = 440;
+        this.x = x;
+        this.y = y;
        
         //update the position of the Player
         this.update = function(dt) {
@@ -89,18 +89,18 @@ class Player{
     }
 }
 // Now instantiate your objects.
-const enemy1 = new Enemy(15,7,150);
- const enemy2 = new Enemy(15,85,200);
-// const enemy3 = new Enemy(166,160, 300);
-// const enemy4 = new Enemy(249, 215, 350);
-const arrOfEnemyBugs = [enemy1, enemy2];
+const enemy1 = new Enemy(0,0,150);
+const enemy2 = new Enemy(0,83,200);
+const enemy3 = new Enemy(0,166,300);
+const enemy4 = new Enemy(0,249,350);
+const arrOfEnemyBugs = [enemy1, enemy2, enemy3, enemy4];
 // Place all enemy objects in an array called allEnemies
 arrOfEnemyBugs.forEach((enemyBug) => {
     allEnemies.push(enemyBug)
 })
 console.log(allEnemies)
 // Place the player object in a variable called player
-var player = new Player();
+var player = new Player(202,400);
 
 
 // This listens for key presses and sends the keys to your
