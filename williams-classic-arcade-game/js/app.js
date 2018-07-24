@@ -52,33 +52,38 @@ class Player{
         this.update = function(dt) {
             //call collision function here to update the players position 
             // reset player's postion when player makes it to the water
-            // if(this.y == 151){
-            //     this.x = 202;
-            //     this.y = 400;
-            // }
+            if(this.y < 0){
+                this.x = 202;
+                this.y = 400;
+            }
         }
 
         // handle key inputs to move player sprite
         this.handleInput = function(keyCodeInput) {
-            //console.log( "x equals " + this.x + "," + "y equals " + this.y);
+            console.log( "x equals " + this.x + "," + "y equals " + this.y);
             //console.log("key press hit " + keyCodeInput);
             if(keyCodeInput === 'left' && this.x > 0) {
-                console.log("left step " + this.x);
+                //if(keyCodeInput === 'left') {
+                //console.log("left step " + this.x);
                 this.x = this.x - 101;
             } 
 
-            if(keyCodeInput == 'up' && this.y > 68){
-                console.log("up step " + this.y);
+            // if(keyCodeInput == 'up' && this.y > 68){
+                //dont think I need a check for y thats handled in the update method
+                if(keyCodeInput === 'up'){
+                //console.log("up step " + this.y);
                 this.y = this.y - 83;
             } 
             
             if(keyCodeInput === 'right' && this.x <= 303){ 
-                console.log("right step " + this.x);
+                //if(keyCodeInput === 'right'){ 
+                //console.log("right step " + this.x);
                 this.x = this.x + 101;
             } 
             
-            if (keyCodeInput == 'down' && this.y < 400) {
-                console.log("down step " + this.y);
+            if (keyCodeInput === 'down' && this.y < 400) {
+                //if (keyCodeInput == 'down') {
+                //console.log("down step " + this.y);
                 this.y = this.y + 83;
             }
         }
