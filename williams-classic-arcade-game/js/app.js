@@ -1,5 +1,7 @@
 // Enemies our player must avoid
 var allEnemies = [];
+const canvasWidth = 505;
+const canvasHeight = 606; 
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -48,28 +50,32 @@ class Player{
        
         //update the position of the Player
         this.update = function(dt) {
-
+            //call collision function here to update the players position 
         }
 
         // handle key inputs to move player sprite
         this.handleInput = function(keyCodeInput) {
-            console.log("key press hit " + keyCodeInput);
-            if(keyCodeInput === 'left') {
+            console.log( "x equals " + this.x + "," + "y equals " + this.y);
+            //console.log("key press hit " + keyCodeInput);
+            if(keyCodeInput === 'left' && this.x > 0) {
+                console.log("left step " + this.x);
                 this.x = this.x - 101;
             } 
 
             if(keyCodeInput == 'up'){
+                console.log("up step " + this.y);
                 this.y = this.y - 83;
             } 
             
-            if(keyCodeInput === 'right'){ 
+            if(keyCodeInput === 'right' && this.x <= 303){ 
+                console.log("right step " + this.x);
                 this.x = this.x + 101;
             } 
             
             if (keyCodeInput == 'down') {
+                console.log("down step " + this.y);
                 this.y = this.y + 83;
             }
-
         }
 
         // Draw the player on the screen, required method for game
@@ -88,7 +94,7 @@ const arrOfEnemyBugs = [enemy1, enemy2, enemy3, enemy4];
 arrOfEnemyBugs.forEach((enemyBug) => {
     allEnemies.push(enemyBug)
 })
-console.log(allEnemies)
+//console.log(allEnemies)
 // Place the player object in a variable called player
 var player = new Player(202,400);
 
