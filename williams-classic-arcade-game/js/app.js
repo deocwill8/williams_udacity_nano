@@ -24,6 +24,21 @@ Enemy.prototype.update = function(dt) {
     } else{
         this.x = this.x + (this.speed * dt);
     }
+
+    //collision detection
+    if(
+        (player.x < this.x + 75) && (player.x + 75 > this.x) &&
+        (player.y < this.y + 55) && (player.y + 75  < this.y)
+    ){
+        console.log("collision");
+        //restart player
+        player.x = 202;
+        player.y = 400;
+        //restart enemies
+        this.x = -101;
+    } else{
+        this.x = this.x + (this.speed * dt);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
