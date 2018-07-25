@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var allEnemies = [];
+let allEnemies = [];
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -25,17 +25,23 @@ Enemy.prototype.update = function(dt) {
         this.x = this.x + (this.speed * dt);
     }
 
-    //collision detection
+   
+    /* 
+    
+    collision detection
+
+    The follow posts and help from Project Coach, Ivan, helped me build my collison detection 
+    https://medium.com/letsboot/classic-arcade-game-with-js-5687e4125169
+    https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+    */
     if(
-        (player.x < this.x + 75) && (player.x + 75 > this.x) &&
-        (player.y < this.y + 55) && (player.y + 75  < this.y)
+        (player.x < this.x + 55) && (player.x + 55 > this.x) &&
+        (player.y < this.y + 35) && (player.y + 35 > this.y)
     ){
         console.log("collision");
         //restart player
         player.x = 202;
         player.y = 400;
-        //restart enemies
-        this.x = -101;
     } else{
         this.x = this.x + (this.speed * dt);
     }
@@ -57,9 +63,9 @@ class Player{
        
         //update the position of the Player
         this.update = function(dt) {
-            //call collision function here to update the players position 
             // reset player's postion when player makes it to the water
             if(this.y < 0){
+                resetGame();
                 this.x = 202;
                 this.y = 400;
             }
@@ -101,6 +107,7 @@ class Player{
         }
     }
 }
+
 // Now instantiate your objects.
 const enemy1 = new Enemy(-101,0,150);
 const enemy2 = new Enemy(-101,83,100);
@@ -111,10 +118,13 @@ const arrOfEnemyBugs = [enemy1, enemy2, enemy3, enemy4];
 arrOfEnemyBugs.forEach((enemyBug) => {
     allEnemies.push(enemyBug)
 })
-//console.log(allEnemies)
+
 // Place the player object in a variable called player
 var player = new Player(202,400);
 
+let resetGame = function(){
+    alert("You've made it to the water!");
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
