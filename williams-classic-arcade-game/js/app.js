@@ -1,10 +1,11 @@
 // Enemies our player must avoid
 let allEnemies = [];
-var Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+let Enemy = function(x, y, speed) {
+    /*
+    Variables applied to each of our instances go here,
+    we've provided one for you to get started
+    The image/sprite for our enemies, this uses
+    a helper we've provided to easily load images */
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y + 55; 
@@ -14,9 +15,9 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    /* You should multiply any movement by the dt parameter
+    which will ensure the game runs at the same speed for
+    all computers. */
     this.x = this.x + (this.speed * dt);
     //console.log(this.x)
     if(this.x >= 505){
@@ -25,10 +26,8 @@ Enemy.prototype.update = function(dt) {
         this.x = this.x + (this.speed * dt);
     }
 
-   
     /* 
-    
-    collision detection
+    COLLISION DETECTION
 
     The follow posts and help from Project Coach, Ivan, helped me build my collison detection 
     https://medium.com/letsboot/classic-arcade-game-with-js-5687e4125169
@@ -76,26 +75,21 @@ class Player{
             //console.log( "x equals " + this.x + "," + "y equals " + this.y);
             //console.log("key press hit " + keyCodeInput);
             if(keyCodeInput === 'left' && this.x > 0) {
-                //if(keyCodeInput === 'left') {
                 //console.log("left step " + this.x);
                 this.x = this.x - 101;
             } 
 
-            // if(keyCodeInput == 'up' && this.y > 68){
-                //dont think I need a check for y thats handled in the update method
-                if(keyCodeInput === 'up'){
+            if(keyCodeInput === 'up'){
                 //console.log("up step " + this.y);
                 this.y = this.y - 83;
             } 
             
             if(keyCodeInput === 'right' && this.x <= 303){ 
-                //if(keyCodeInput === 'right'){ 
                 //console.log("right step " + this.x);
                 this.x = this.x + 101;
             } 
             
             if (keyCodeInput === 'down' && this.y < 400) {
-                //if (keyCodeInput == 'down') {
                 //console.log("down step " + this.y);
                 this.y = this.y + 83;
             }
@@ -120,7 +114,7 @@ arrOfEnemyBugs.forEach((enemyBug) => {
 })
 
 // Place the player object in a variable called player
-var player = new Player(202,400);
+let player = new Player(202,400);
 
 let resetGame = function(){
     alert("You've made it to the water!");
@@ -129,7 +123,7 @@ let resetGame = function(){
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    let allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
