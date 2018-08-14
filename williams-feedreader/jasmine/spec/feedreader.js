@@ -65,10 +65,11 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
          describe('The menu', function() {
-
-            // beforeEach(function() {
-            //     const menu = document.body; 
-            // })
+            let menu, menuIcon;
+            beforeEach(function() {
+                menu = document.body; 
+                menuIcon = document.getElementsByClassName("menu-icon-link");
+            })
         
 
          /* TODO: Write a test that ensures the menu element is
@@ -77,7 +78,6 @@ $(function() {
          * hiding/showing of the menu element.
          */
             it('should find the menu element hidden by default', function() {
-                let menu = document.body; 
                 expect(menu.className).toContain("menu-hidden");
             })
     
@@ -86,9 +86,7 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-            it('should show and hide the menu on click', function() {
-                let menu = document.body; 
-                let menuIcon = document.getElementsByClassName("menu-icon-link");
+            it('should show and hide the menu on click', function() { 
                 let clickedMenuIcon = menuIcon[0];
                 clickedMenuIcon.click();
                 expect(menu.className).not.toContain("menu-hidden");
