@@ -66,14 +66,19 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
          describe('The menu', function() {
 
+            // beforeEach(function() {
+            //     const menu = document.body; 
+            // })
+        
+
          /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-            it('should find the menu element hidden', function() {
-                let menu = document.body;
-                expect(menu.classList.contains('menu-hidden')).toBe(true);
+            it('should find the menu element hidden by default', function() {
+                let menu = document.body; 
+                expect(menu.className).toContain("menu-hidden");
             })
     
          /* TODO: Write a test that ensures the menu changes
@@ -82,33 +87,14 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
             it('should show and hide the menu on click', function() {
-                expect(allFeeds[0].url).toBeDefined();
-                expect(allFeeds[1].url).toBeDefined();
-                expect(allFeeds[2].url).toBeDefined();
-                expect(allFeeds[3].url).toBeDefined();
-                //checks if it is empty 
-                expect(allFeeds[0].url.length).not.toBe(0);
-                expect(allFeeds[1].url.length).not.toBe(0);
-                expect(allFeeds[2].url.length).not.toBe(0);
-                expect(allFeeds[3].url.length).not.toBe(0);
+                let menu = document.body; 
+                let menuIcon = document.getElementsByClassName("menu-icon-link");
+                let clickedMenuIcon = menuIcon[0];
+                clickedMenuIcon.click();
+                expect(menu.className).not.toContain("menu-hidden");
+                clickedMenuIcon.click();
+                expect(menu.className).toContain("menu-hidden");
     
-            });
-    
-    
-            /* TODO: Write a test that loops through each feed
-             * in the allFeeds object and ensures it has a name defined
-             * and that the name is not empty.
-             */
-            it('should ensure that every feed has a name and that name is not empty', function() {
-                expect(allFeeds[0].name).toBeDefined();
-                expect(allFeeds[1].name).toBeDefined();
-                expect(allFeeds[2].name).toBeDefined();
-                expect(allFeeds[3].name).toBeDefined(); 
-                //checks if it is empty 
-                expect(allFeeds[0].name.length).not.toBe(0);
-                expect(allFeeds[1].name.length).not.toBe(0);
-                expect(allFeeds[2].name.length).not.toBe(0);
-                expect(allFeeds[3].name.length).not.toBe(0);
             });
         });     
 
