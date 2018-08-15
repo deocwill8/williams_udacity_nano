@@ -32,16 +32,12 @@ $(function() {
          * and that the URL is not empty.
          */
         it('should ensure that every feed has a URL and that URL is not empty', function() {
-            expect(allFeeds[0].url).toBeDefined();
-            expect(allFeeds[1].url).toBeDefined();
-            expect(allFeeds[2].url).toBeDefined();
-            expect(allFeeds[3].url).toBeDefined();
-            //checks if it is empty 
-            expect(allFeeds[0].url.length).not.toBe(0);
-            expect(allFeeds[1].url.length).not.toBe(0);
-            expect(allFeeds[2].url.length).not.toBe(0);
-            expect(allFeeds[3].url.length).not.toBe(0);
-
+            for (let feed of allFeeds){
+                //console.log(feed);
+                expect(feed.url).toBeDefined();
+                //checks if it is empty 
+                expect(feed.url.length).not.toBe(0);
+            }
         });
 
 
@@ -50,15 +46,12 @@ $(function() {
          * and that the name is not empty.
          */
         it('should ensure that every feed has a name and that name is not empty', function() {
-            expect(allFeeds[0].name).toBeDefined();
-            expect(allFeeds[1].name).toBeDefined();
-            expect(allFeeds[2].name).toBeDefined();
-            expect(allFeeds[3].name).toBeDefined(); 
-            //checks if it is empty 
-            expect(allFeeds[0].name.length).not.toBe(0);
-            expect(allFeeds[1].name.length).not.toBe(0);
-            expect(allFeeds[2].name.length).not.toBe(0);
-            expect(allFeeds[3].name.length).not.toBe(0);
+            for (let feed of allFeeds){
+                //console.log(feed);
+                expect(feed.name).toBeDefined();
+                //checks if it is empty 
+                expect(feed.name.length).not.toBe(0);
+            }
         });
     });
 
@@ -154,6 +147,4 @@ $(function() {
             expect(firstFeed).not.toEqual(secondFeed);
         })
     }); 
-
-
 }());
