@@ -89,6 +89,8 @@ $(function() {
             it('should show and hide the menu on click', function() { 
                 let clickedMenuIcon = menuIcon[0];
                 clickedMenuIcon.click();
+                //found the toContain() method on this project that has been done
+                //https://github.com/yhagio/udacity-feedreader-test/blob/master/jasmine/spec/feedreader.js
                 expect(menu.className).not.toContain("menu-hidden");
                 clickedMenuIcon.click();
                 expect(menu.className).toContain("menu-hidden");
@@ -114,7 +116,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-            it('a single entry is within the feed container when call loadFeed()', function() {
+            it('should show at least a single entry is within the feed container when loadFeed() is called', function() {
                 let feedContainer = document.getElementsByClassName("feed");
                 //found this method https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes
                 expect(feedContainer[0].hasChildNodes()).toBe(true);
@@ -124,8 +126,34 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
+    describe('New Feed Selection', function() {
+        let feedContainer = document.getElementsByClassName("feed");
+        let firstFeed;
+        beforeEach(function(done) {
+            //call the first feed of content 
+            loadFeed(0, function() {
+                //not sure why the assignment didnt work in here
+                //firstFeed = feedContainer[0].innerText;
+            });
+            //console.log(feedContainer[0].innerText);
+            firstFeed = feedContainer[0].innerText;
+
+            //call the second feed of content 
+            loadFeed(1, function() {
+                done();
+            })
+        })
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        it('a single entry is within the feed container when call loadFeed()', function() {
+            let feedContainer = document.getElementsByClassName("feed");
+            let secondFeed = feedContainer[0].innerText;
+            //console.log(feedContainer[0].innerText);
+            expect(firstFeed).not.toEqual(secondFeed);
+        })
+    }); 
+
+
 }());
