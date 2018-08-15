@@ -27,9 +27,9 @@ $(function() {
         })
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+        /* This test will loop through the allFeeds array and for each feed
+         * it will check to see if the url property is defined and if the url
+         * is not an empty string.
          */
         it('should ensure that every feed has a URL and that URL is not empty', function() {
             for (let feed of allFeeds){
@@ -41,9 +41,9 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+        /* This test will loop through the allFeeds array and for each feed
+         * it will check to see if the name property is defined and if the name
+         * is not an empty string.
          */
         it('should ensure that every feed has a name and that name is not empty', function() {
             for (let feed of allFeeds){
@@ -56,44 +56,46 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* New test suite called "The menu" which will test how 
+     * the menu appears and disappers in the web application 
+     */
          describe('The menu', function() {
             let menu, menuIcon;
             beforeEach(function() {
                 menu = document.body; 
                 menuIcon = document.getElementsByClassName("menu-icon-link");
-            })
+            });
         
 
-         /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+         /* This test uses jQuery to check the body tag ensuring 
+         * it has a class named menu-hidden. This class ensures 
+         * the slide out menu is hidden by default.
          */
             it('should find the menu element hidden by default', function() {
-                expect(menu.className).toContain("menu-hidden");
+                //expect(menu.className).toContain("menu-hidden");
+               expect($("body").hasClass("menu-hidden")).toBe(true)
             })
     
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+        /* This test first uses JS to identify and click the menu icon. When the icon is clicked 
+         * the menu-hidden class is removed, sliding the menu out. When the icon is clicked again 
+         * the menu-hidden class is put back, sliding the menu off of the screen again. 
+         */
             it('should show and hide the menu on click', function() { 
                 let clickedMenuIcon = menuIcon[0];
                 clickedMenuIcon.click();
-                //found the toContain() method on this project that has been done
-                //https://github.com/yhagio/udacity-feedreader-test/blob/master/jasmine/spec/feedreader.js
-                expect(menu.className).not.toContain("menu-hidden");
+                expect($("body").hasClass("menu-hidden")).not.toBe(true)
                 clickedMenuIcon.click();
-                expect(menu.className).toContain("menu-hidden");
+                expect($("body").hasClass("menu-hidden")).toBe(true)
     
             });
         });     
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* New test suite called "Initial Entries" which will 
+     * check if the loadFeed function actually loads the feeds
+     * fetchecd from the api
+     */
     
-    //followed this tutorial to figure out how to implement the done functionality 
+    // followed this tutorial to figure out how to implement the done functionality 
     // https://www.youtube.com/watch?v=_XwH-xfvydw
 
         describe('Initial Entries', function() {
@@ -103,47 +105,47 @@ $(function() {
                     done();
                 })
             })
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
+
+        /* Test the asynchronous function loadFeed() to ensure when it's called
+         * and completed it returns the element with the class .feed and at least one
+         * child element with the class .entry.  
          */
             it('should show at least a single entry is within the feed container when loadFeed() is called', function() {
                 let feedContainer = document.getElementsByClassName("feed");
-                //found this method https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes
-                expect(feedContainer[0].hasChildNodes()).toBe(true);
+                /* Reviewer suggested using method toBeGreaterThan() to make sure 
+                 * the elements with .entry class should be 
+                 * greater than 0. Found a SO article detailing how to use it. 
+                 * https://stackoverflow.com/questions/16302045/finding-child-element-of-parent-pure-javascript
+                 */
+                expect(document.querySelector('.feed').querySelectorAll('.entry').length).toBeGreaterThan(0);
             })
         }); 
          
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* New test suite called "New Feed Selection" which will 
+     * check when the loadFeed() is called back to back,  new feed data is being loaded.
+     */
 
     describe('New Feed Selection', function() {
         let feedContainer = document.getElementsByClassName("feed");
-        let firstFeed;
+        let firstFeed, secondFeed;
         beforeEach(function(done) {
-            //call the first feed of content 
-            loadFeed(0, function() {
-                //not sure why the assignment didnt work in here
-                //firstFeed = feedContainer[0].innerText;
-            });
-            //console.log(feedContainer[0].innerText);
-            firstFeed = feedContainer[0].innerText;
-
-            //call the second feed of content 
-            loadFeed(1, function() {
-                done();
+            //call for the first feed of content 
+            loadFeed(0, function(){
+                firstFeed = feedContainer[0].innerText;
+                /*call loadFeed() again in the cb to ensure the first one was successful
+                and to load a different feed 
+                */
+                loadFeed(1, function(){
+                    secondFeed = feedContainer[0].innerText;
+                    done();
+                })
             })
         })
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+        /* Ensure the content returned by both the loadFeed() calls 
+         * are different
          */
         it('a single entry is within the feed container when call loadFeed()', function() {
-            let feedContainer = document.getElementsByClassName("feed");
-            let secondFeed = feedContainer[0].innerText;
-            //console.log(feedContainer[0].innerText);
             expect(firstFeed).not.toEqual(secondFeed);
         })
     }); 
