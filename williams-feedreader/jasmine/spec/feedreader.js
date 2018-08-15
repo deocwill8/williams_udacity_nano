@@ -97,13 +97,30 @@ $(function() {
         });     
 
     /* TODO: Write a new test suite named "Initial Entries" */
+    
+    //followed this tutorial to figure out how to implement the done functionality 
+    // https://www.youtube.com/watch?v=_XwH-xfvydw
 
+        describe('Initial Entries', function() {
+            beforeEach(function(done) {
+                //feedContainer = document.getElementsByClassName("feed");
+                loadFeed(0, function() {
+                    done();
+                })
+            })
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+            it('a single entry is within the feed container when call loadFeed()', function() {
+                let feedContainer = document.getElementsByClassName("feed");
+                //found this method https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes
+                expect(feedContainer[0].hasChildNodes()).toBe(true);
+            })
+        }); 
+         
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
