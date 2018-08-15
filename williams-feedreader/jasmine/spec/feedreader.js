@@ -73,7 +73,7 @@ $(function() {
          */
             it('should find the menu element hidden by default', function() {
                 //expect(menu.className).toContain("menu-hidden");
-               expect($("body").hasClass("menu-hidden")).toBe(true)
+               expect($("body").hasClass("menu-hidden")).toBe(true);
             })
     
         /* This test first uses JS to identify and click the menu icon. When the icon is clicked 
@@ -83,9 +83,9 @@ $(function() {
             it('should show and hide the menu on click', function() { 
                 let clickedMenuIcon = menuIcon[0];
                 clickedMenuIcon.click();
-                expect($("body").hasClass("menu-hidden")).not.toBe(true)
+                expect($("body").hasClass("menu-hidden")).not.toBe(true);
                 clickedMenuIcon.click();
-                expect($("body").hasClass("menu-hidden")).toBe(true)
+                expect($("body").hasClass("menu-hidden")).toBe(true);
     
             });
         });     
@@ -111,7 +111,6 @@ $(function() {
          * child element with the class .entry.  
          */
             it('should show at least a single entry is within the feed container when loadFeed() is called', function() {
-                let feedContainer = document.getElementsByClassName("feed");
                 /* Reviewer suggested using method toBeGreaterThan() to make sure 
                  * the elements with .entry class should be 
                  * greater than 0. Found a SO article detailing how to use it. 
