@@ -21,7 +21,7 @@ function getChildrenOfList() {
                         pictureContainer.appendChild(pictureTextHeader);
                         pictureContainer.appendChild(img);
                         pictureContainer.appendChild(counterText);
-                        counterText.innerText = `The picture has been clicked ${counter} times.`;
+                        counterText.innerText = `The picture, ${pictureTextHeader.innerText}, has been clicked ${counter} times.`;
                         break;
                 case "catImageTwo":
                         pictureContainer.innerHTML = "";
@@ -31,7 +31,7 @@ function getChildrenOfList() {
                         pictureContainer.appendChild(pictureTextHeader);
                         pictureContainer.appendChild(img);
                         pictureContainer.appendChild(counterText);
-                        counterText.innerText = `The picture has been clicked ${counter} times.`;
+                        counterText.innerText = `The picture, ${pictureTextHeader.innerText}, has been clicked ${counter} times.`;
                         break;
                 case "catImageThree":
                         pictureContainer.innerHTML = "";
@@ -41,7 +41,7 @@ function getChildrenOfList() {
                         pictureContainer.appendChild(pictureTextHeader);
                         pictureContainer.appendChild(img);
                         pictureContainer.appendChild(counterText);
-                        counterText.innerText = `The picture has been clicked ${counter} times.`;
+                        counterText.innerText = `The picture, ${pictureTextHeader.innerText}, has been clicked ${counter} times.`;
                         break;
                 case "catImageFour":
                         pictureContainer.innerHTML = "";
@@ -51,7 +51,7 @@ function getChildrenOfList() {
                         pictureContainer.appendChild(pictureTextHeader);
                         pictureContainer.appendChild(img);
                         pictureContainer.appendChild(counterText);
-                        counterText.innerText = `The picture has been clicked ${counter} times.`;
+                        counterText.innerText = `The picture, ${pictureTextHeader.innerText}, has been clicked ${counter} times.`;
                         break;
                 case "catImageFive":
                         pictureContainer.innerHTML = "";
@@ -61,7 +61,7 @@ function getChildrenOfList() {
                         pictureContainer.appendChild(pictureTextHeader);
                         pictureContainer.appendChild(img);
                         pictureContainer.appendChild(counterText);
-                        counterText.innerText = `The picture has been clicked ${counter} times.`;
+                        counterText.innerText = `The picture, ${pictureTextHeader.innerText}, has been clicked ${counter} times.`;
                         break;
                 default:
                         console.log("invalid");
@@ -71,6 +71,6 @@ function getChildrenOfList() {
 let imageClicked = function() {
         counter++
         //TODO figure out how to reference the name of the picture as well 
-        counterText.innerText = `The picture has been clicked ${counter} times.`;
+        counterText.innerText = `The picture, ${pictureTextHeader.innerText},  has been clicked ${counter} times.`;
         console.log(counter);
 }
