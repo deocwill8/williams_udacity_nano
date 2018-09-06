@@ -11,6 +11,7 @@ let model = {
 
 let octopus = {
         start: function() {
+                model.currentCat = model.listOfCats[0];
                 view.renderListOfNames();
                 view.setElementsUp();
         },
