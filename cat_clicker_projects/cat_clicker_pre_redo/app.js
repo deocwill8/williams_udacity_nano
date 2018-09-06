@@ -10,6 +10,10 @@ let model = {
 }
 
 let octopus = {
+        start: function() {
+                view.renderListOfNames();
+                view.setElementsUp();
+        },
         getListOfCats: function() {
                 return model.listOfCats;
         },
@@ -22,11 +26,10 @@ let octopus = {
                                 model.currentCat = catInfo;
                         }
                 })
-                view.setElementsUp();
         },
         updateClickCount: function() {
                 model.currentCat.catCount++;
-                console.log(model.currentCat.catCount);
+                view.renderCurrentCat();
             }
 }
 
@@ -36,17 +39,16 @@ let view = {
                 octopus.getListOfCats().forEach(function(name){
                         let li = document.createElement('li');
                         listOfLinks.appendChild(li);
-                        li.id = name.catName;
                         li.innerText += name.catName;
 
                         
                         li.addEventListener('click', function(catImageName){
                                 octopus.setCurrentCat(catImageName.srcElement.textContent);
+                                view.renderCurrentCat();
                         })
                 })
 
         },
-
         setElementsUp: function(){
                 this.pictureContainer = document.getElementById('pictureContainer');
                 this.pictureTextHeader = document.getElementById('catName');
@@ -54,8 +56,9 @@ let view = {
                 this.counterText = document.getElementById('counterText');
         
                 this.catImg.addEventListener('click', function(){
-                        octopus.updateClickCount()
-                })
+                        console.log("the image has been clicked");
+                        octopus.updateClickCount();
+                });
 
                 this.renderCurrentCat();
         },
@@ -66,4 +69,4 @@ let view = {
                 this.counterText.textContent = activeCat.catCount;
         }
 }
-view.renderListOfNames();
+octopus.start();
