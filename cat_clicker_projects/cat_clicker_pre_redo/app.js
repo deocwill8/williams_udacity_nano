@@ -1,83 +1,69 @@
-let currentCat; 
-let currentCount = 0;
-
 let model = {
-
-     listOfCats: [ 
-        {catName: "cat1", catCount: 0, imgSrc: 'images/cat_1.jpg'},
-        {catName: "cat2", catCount: 0, imgSrc: 'images/cat_2.jpg'},
-        {catName: "cat3", catCount: 0, imgSrc: 'images/cat_3.jpg'},
-        {catName: "cat4", catCount: 0, imgSrc: 'images/cat_4.jpg'},
-        {catName: "cat5", catCount: 0, imgSrc: 'images/cat_5.jpg'}
+        currentCat: null,
+        listOfCats: [ 
+                {catName: "cat1", catCount: 0, imgSrc: 'images/cat_1.jpg'},
+                {catName: "cat2", catCount: 0, imgSrc: 'images/cat_2.jpg'},
+                {catName: "cat3", catCount: 0, imgSrc: 'images/cat_3.jpg'},
+                {catName: "cat4", catCount: 0, imgSrc: 'images/cat_4.jpg'},
+                {catName: "cat5", catCount: 0, imgSrc: 'images/cat_5.jpg'}
         ]
 }
 
 let octopus = {
-        getListOfNames: function() {
+        getListOfCats: function() {
                 return model.listOfCats;
         },
-
-        //increase cat count
-        updateCount: function(currentCount) {
-                model.listOfCats.forEach(function(currentCatCount){
-                        if(currentCount == currentCatCount.catName) {
-                                currentCatCount.catCount++
-                                console.log(currentCatCount);
-                            }
-                })
-                //counterText.innerText = `The picture, ${pictureTextHeader.innerText},  has been clicked ${catName.catCount} times.`;
+        getCurrentCat: function(){
+                return model.currentCat;
         },
-
-        //change the model/view
-        updateImgArea: function(nameOfImage) {
-                model.listOfCats.forEach(function(currentName){
-                        if(nameOfImage == currentName.catName) {
-                                currentCat = currentName;
-                                view.renderCurrentCat();
-                                //console.log(currentName);
-                            }
+        setCurrentCat: function(catClicked){
+                model.listOfCats.forEach(function(catInfo){
+                        if(catInfo.catName == catClicked){
+                                model.currentCat = catInfo;
+                        }
                 })
-        } 
+                view.setElementsUp();
+        },
+        updateClickCount: function() {
+                model.currentCat.catCount++;
+                console.log(model.currentCat.catCount);
+            }
 }
 
 let view = {
         renderListOfNames: function(){
-                octopus.getListOfNames().forEach(function(name){
+                listOfLinks = document.getElementById("listOfLinks");
+                octopus.getListOfCats().forEach(function(name){
                         let li = document.createElement('li');
                         listOfLinks.appendChild(li);
                         li.id = name.catName;
                         li.innerText += name.catName;
 
-
+                        
                         li.addEventListener('click', function(catImageName){
-                                octopus.updateImgArea(catImageName.srcElement.textContent);
-                                //console.log(catImageName.srcElement.textContent + " is the current cat")
+                                octopus.setCurrentCat(catImageName.srcElement.textContent);
                         })
                 })
 
         },
 
-        renderCurrentCat: function() {
-                listOfLinks = document.getElementById("listOfLinks");
-                pictureContainer = document.getElementById('pictureContainer');
-                pictureTextHeader = document.getElementById('pictureTextHeader');
-                img = document.getElementById('picture');
-                counterText = document.getElementById('counterText');
-
-                pictureContainer.innerHTML = "";
-                pictureTextHeader.innerText = currentCat.catName;
-                img.src = currentCat.imgSrc;
-                img.className = currentCat.catName;
-                pictureContainer.appendChild(pictureTextHeader);
-                pictureContainer.appendChild(img);
-                pictureContainer.appendChild(counterText);
-                counterText.innerText = `The picture, ${pictureTextHeader.innerText}, has been clicked ${currentCount} times.`;
-
-
-                img.addEventListener('click', function(image){
-                        octopus.updateCount(image.target.className);
-                       console.log(image.target.className);
+        setElementsUp: function(){
+                this.pictureContainer = document.getElementById('pictureContainer');
+                this.pictureTextHeader = document.getElementById('catName');
+                this.catImg = document.getElementById('picture');
+                this.counterText = document.getElementById('counterText');
+        
+                this.catImg.addEventListener('click', function(){
+                        octopus.updateClickCount()
                 })
+
+                this.renderCurrentCat();
+        },
+        renderCurrentCat: function() {
+                let activeCat = octopus.getCurrentCat();
+                this.pictureTextHeader.textContent = activeCat.catName;
+                this.catImg.src = activeCat.imgSrc;
+                this.counterText.textContent = activeCat.catCount;
         }
 }
 view.renderListOfNames();
