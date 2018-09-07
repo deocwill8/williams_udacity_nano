@@ -45,10 +45,12 @@ let octopus = {
                 model.hideAdminView = true; 
                 adminView.showAdminArea();
         },
-        setManualNumberOfClicks: function(catName, numberOfClicks) {
+        setManualNumberOfClicks: function(catName, numberOfClicks, updatedCatName, updatedImgSrc) {
                 model.listOfCats.forEach(function(catInfo){
                         if(catInfo.catName == catName){
                                 model.currentCat.catCount = numberOfClicks;
+                                model.currentCat.catName = updatedCatName;
+                                model.currentCat.imgSrc = updatedImgSrc;
                         }
                 })
                 view.renderCurrentCat();
@@ -100,6 +102,8 @@ let adminView = {
                 this.cancelBtn = document.getElementById('cancel');
                 this.saveBtn = document.getElementById('save');
                 this.manualNumberOfClicks = document.getElementById('manualNumberOfClicks');
+                this.manualNameChange = document.getElementById('manualNameChange');
+                this.manualURLChange = document.getElementById('manualURLChange');
 
                 this.adminBtn.addEventListener('click', function() {
                         octopus.showAdminView();
@@ -112,9 +116,9 @@ let adminView = {
                 })
 
                 this.saveBtn.addEventListener('click', function() {
-                        console.log(manualNumberOfClicks.value);
                         console.log(view.pictureTextHeader.textContent);
-                        octopus.setManualNumberOfClicks(view.pictureTextHeader.textContent, manualNumberOfClicks.value )
+                        console.log(manualNumberOfClicks.value);
+                        octopus.setManualNumberOfClicks(view.pictureTextHeader.textContent, manualNumberOfClicks.value, manualNameChange.value), manualURLChange.value;
                         //console.log("save clicked");
                         octopus.hideAdminViewFunc();
                 })
