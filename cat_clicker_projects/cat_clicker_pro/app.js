@@ -45,6 +45,7 @@ let octopus = {
                 model.hideAdminView = true; 
                 adminView.showAdminArea();
         },
+        //TODO fix the issue of filling in null values when the field is not updated
         setManualNumberOfClicks: function(catName, numberOfClicks, updatedCatName, updatedImgSrc) {
                 model.listOfCats.forEach(function(catInfo){
                         if(catInfo.catName == catName){
