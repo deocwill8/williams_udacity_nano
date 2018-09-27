@@ -106,7 +106,8 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
-  height: 50px;
+  height: 78px;
+  padding-top: 16px;
   background-color: #3397DB;
   align-items: center;
 }
@@ -133,7 +134,8 @@ nav h1 a {
 #restaurants-list {
   background-color: #f3f3f3;
   list-style: outside none none;
-  margin: 0;
+  margin: auto;
+  width: 35%;
   padding: 30px 15px 60px;
   text-align: center;
 }
@@ -272,4 +274,18 @@ nav h1 a {
 }
 #restaurant-hours td {
   color: #666;
+}
+
+ /* Tablets */
+
+ @media screen and (min-width: 361px) and (max-width: 768px) {
+  
+ 
+}
+/* Smaller screens such as phones  */
+
+@media screen and (min-width: 0px) and (max-width: 360px) {
+ 
+
+  
 }
