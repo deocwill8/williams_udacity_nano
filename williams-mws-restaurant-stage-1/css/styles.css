@@ -282,13 +282,15 @@ nav h1 a {
  /* Tablets */
 
  @media screen and (min-width: 361px) and (max-width: 768px) {
-  
+  #restaurants-list {
+    background-color: blue;
+  }
  
 }
 /* Smaller screens such as phones  */
 
 @media screen and (min-width: 0px) and (max-width: 360px) {
- 
-
-  
+ #restaurants-list {
+  background-color: black;
+  } 
 }
