@@ -137,7 +137,7 @@ nav h1 a {
   margin: auto;
   padding: 30px 15px 60px;
   text-align: center;
-  max-width: 800px;
+  max-width: 768px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -282,15 +282,39 @@ nav h1 a {
  /* Tablets */
 
  @media screen and (min-width: 361px) and (max-width: 768px) {
-  #restaurants-list {
-    background-color: blue;
+  .filter-options {
+    height: 100%;
+    background-color: #3397DB;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .filter-options h2{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 8px 20px;
   }
  
-}
+  }
 /* Smaller screens such as phones  */
 
-@media screen and (min-width: 0px) and (max-width: 360px) {
- #restaurants-list {
-  background-color: black;
-  } 
+@media screen and (min-width: 0px) and (max-width: 375px) {
+  .filter-options {
+    height: 100%;
+    background-color: #3397DB;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .filter-options h2{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 8px 20px;
+  }
 }
