@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -28,22 +28,24 @@
 
     
     <!-- Beginning map -->
-    <section tabindex="0" role="application" name="map" id="map-container">
+    <label for="map-container"></label>
+    <section tabindex="0"  role="application" name="map" id="map-container">
       <div id="map"></div>
     </section>
     <!-- End map -->
 
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <section id="restaurant-container" role="group">
     
       <!-- Beginning breadcrumb -->
+      <label for="breadcrumb" role="listitem"></label>
       <ul id="breadcrumb" >
-          <li><a role="button" href="/" tabindex="0">Home</a></li>
+          <li><a href="/" tabindex="0">Home</a></li>
       </ul>
       <!-- End breadcrumb -->
 
 
-      <h1 tabindex="0" id="restaurant-name"></h1>
+      <h5 id="restaurant-name"></h5>
       <img id="restaurant-img"> 
       <p id="restaurant-cuisine"></p>
       <p id="restaurant-address"></p>
@@ -52,8 +54,9 @@
     <!-- end restaurant -->
 
     <!-- Beginning reviews -->
-    <section id="reviews-container">
-      <ul role="list" id="reviews-list"></ul>
+    <label for="reviews-container"></label>
+    <section id="reviews-container" role="list">
+      <ul role="list" id="reviews-list" role="listitem"></ul>
     </section>
     <!-- End reviews -->
 
