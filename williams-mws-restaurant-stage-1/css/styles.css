@@ -200,6 +200,7 @@ nav h1 a {
 .inside #map-container {
   background: blue none repeat scroll 0 0;
   height: 400px;
+  margin-top: 80px;
   position: static;
   right: 0;
   top: 80px;
