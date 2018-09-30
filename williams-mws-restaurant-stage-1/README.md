@@ -1,15 +1,15 @@
 # Restaurant Reviews Project
 
-### Table of Contents
+## Table of Contents
 
 * [Overview](#Overview)
 * [How to Run](#run)
 
-## Overview
+### Overview
 
 This is the fifth project in Udacity's Front-End Web Developer Program. In this project I was given a static web page and tasked with making it responive and making it offline ready. 
 
-## Run
+### Run
 
 In this project folder, start up your HTTP server to serve the site files on your local computer. 
 
