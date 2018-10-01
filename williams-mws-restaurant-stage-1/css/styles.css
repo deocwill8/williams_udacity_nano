@@ -142,10 +142,9 @@ nav h1 a {
   margin: auto;
   padding: 30px 15px 60px;
   text-align: center;
-  max-width: 768px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 #restaurants-list li {
   background-color: #fff;
@@ -230,7 +229,7 @@ nav h1 a {
   line-height: 1.1;
 }
 #restaurant-img {
-  width: 90%;
+  max-width: 64%;
   height: auto;
   object-fit: cover;
 }
@@ -248,7 +247,7 @@ nav h1 a {
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-	width: 90%;
+  width: 90%;
 }
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;

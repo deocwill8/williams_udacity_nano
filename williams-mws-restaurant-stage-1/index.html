@@ -19,6 +19,7 @@
 
   <main id="maincontent">
 
+    <label for="map-container"></label>
     <section tabindex="0" role="application" name="map" id="map-container">
       <div id="map"></div>
     </section>
@@ -26,13 +27,16 @@
     <section>
       <div class="filter-options">
         <h2>Filter Results</h2>
+        <label for="neighborhoods-select"></label>
         <select role="select" id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
+        <label for="cuisines-select"></label>
         <select role="select"  id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
       </div>
+      <label for="restaurants-list"></label>
       <ul role="list" id="restaurants-list"></ul>
     </section>
 
