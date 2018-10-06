@@ -9,14 +9,13 @@ import Search from './Search'
 
 class BooksApp extends React.Component {
   state = {
-    currentlyReading: [],
-    wantToReady: [],
-    read: []
+    allBooks: []
   }
 
   componentDidMount(){
     BooksAPI.getAll().then((books)=> {
       console.log(books)
+      this.setState({ allBooks: books })
     })
   }
 
@@ -30,9 +29,9 @@ class BooksApp extends React.Component {
                   </div>
                   <div className="list-books-content">
                     <div>
-                      <CurrentlyReading />
-                      <WantToRead />
-                      <Read />
+                      <CurrentlyReading allBooks={this.state.allBooks} />
+                      <WantToRead allBooks={this.state.allBooks}/>
+                      <Read allBooks={this.state.allBooks} />
                     </div>
                   </div> 
                   <div className="open-search">
