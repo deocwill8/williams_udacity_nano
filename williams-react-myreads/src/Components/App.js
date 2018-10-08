@@ -6,8 +6,13 @@ import ShelfComponent from './ShelfComponent'
 import Search from '../Search'
 
 class BooksApp extends React.Component {
-  state = {
-    books: []
+  constructor(props){
+    super(props)
+    this.state = {
+      books: []
+    }
+
+    this.changeShelf = this.changeShelf.bind(this)
   }
 
   componentDidMount(){
@@ -17,12 +22,15 @@ class BooksApp extends React.Component {
     })
   }
 
-  changeShelf(book, shelf){
-    console.log(book)
-    console.log(shelf)
-    BooksAPI.update(book, shelf)
+  changeShelf(updatedBook, newShelf){
+    console.log([updatedBook])
+    updatedBook.shelf = newShelf
+    BooksAPI.update(updatedBook, newShelf)
     .then(resp => {
-      console.log(resp)
+      console.log(resp) //array of objects
+      this.setState(state => ({
+        books: state.books.filter(currentBook => currentBook.id !== updatedBook.id).concat([updatedBook])
+      }))
     })
   }
 
