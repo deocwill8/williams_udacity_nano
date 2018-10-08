@@ -7,13 +7,13 @@ import Search from '../Search'
 
 class BooksApp extends React.Component {
   state = {
-    allBooks: []
+    books: []
   }
 
   componentDidMount(){
     BooksAPI.getAll().then((books)=> {
       console.log(books)
-      this.setState({ allBooks: books })
+      this.setState({ books })
     })
   }
 
@@ -27,7 +27,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <ShelfComponent allBooks={this.state.allBooks} />
+                <ShelfComponent bookShelfDescription="Currently Reading"  books={this.state.books.filter(book => book.shelf === "currentlyReading")} />
+                <ShelfComponent bookShelfDescription="Want to Read" books={this.state.books.filter(book => book.shelf === "wantToRead")} /> 
+                <ShelfComponent bookShelfDescription="Read" books={this.state.books.filter(book => book.shelf === "read")} />
               </div>
             </div> 
             <div className="open-search">
@@ -41,6 +43,5 @@ class BooksApp extends React.Component {
     )
   }
 }
-
 export default BooksApp
 
