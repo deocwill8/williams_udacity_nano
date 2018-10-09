@@ -8,6 +8,9 @@ import FilteredBookComponent from './FilteredBookComponent';
 
 
 class Search extends Component {
+  componentDidMount(){
+    console.log('Search' ,this.props)
+} 
   constructor(props){
     super(props)
     this.state = {
