@@ -12,12 +12,12 @@ class Search extends Component {
     super(props)
     this.state = {
       searchQuery: '',
-      bookMatches: [],
-      hasError: false
+      bookMatches: []
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.updateBookMatches = this.updateBookMatches.bind(this)
+    console.log(this.state)
   }
 
   handleChange = (query) => {
@@ -26,22 +26,29 @@ class Search extends Component {
   }
 
   updateBookMatches = (query) => {
-    BooksAPI.search(query).then((result) => {
-      this.setState({bookMatches: result})
-      console.log(result)
-    }).catch((error) => {
-      console.log(error)
-      this.setState({ hasError: true })
-    })
-    console.log(this.state)
+    /*idea to check if anything was actually in the field 
+    this particular way came from : https://www.youtube.com/watch?v=i6L2jLHV9j8
+    around 2:07:00 */
+    //check if anything is in the input field 
+    if(query.length > 0) {
+      BooksAPI.search(query).then((result) => {
+        console.log(result)
+        //check if query matches any of the results 
+        if(result.error){
+          this.setState({bookMatches: []})
+        } else {
+          this.setState({bookMatches: result})
+        }
+      })
+    } else {
+      this.setState({bookMatches: []})
+    }
+
   }
 
   render() {
         return (
           <div>
-            {this.state.hasError ? (
-              <h1>No results found</h1>
-            ) : (
               <div className="search-books">
                 <div className="search-books-bar">
                   <Link className="close-search" to="/">Close</Link>
@@ -53,51 +60,19 @@ class Search extends Component {
                     />
                    </div>
                   </div>
-                  <div className="search-books-results">
-                    <ol className="books-grid">
-                        {this.state.bookMatches.map((searchedBook) => (
-                          <li key={searchedBook.id}>
-                            <FilteredBookComponent book={searchedBook} />
-                          </li>
-                        ))}
-                      </ol>
-                   </div>
+                    <div className="search-books-results">
+                      <ol className="books-grid">
+                          {this.state.bookMatches.map((searchedBook) => (
+                            <li key={searchedBook.id}>
+                              <FilteredBookComponent book={searchedBook} />
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
                 </div>
-              )}
-
             </div>
           ) 
     }
 }
 
 export default Search
-
-// render() {
-//   if(this.state.hasError == true) {
-//     return <h1>No results found</h1>
-//   } else {
-//     return (
-//       <div className="search-books">
-//       <div className="search-books-bar">
-//         <Link className="close-search" to="/">Close</Link>
-//         <div className="search-books-input-wrapper">
-//           <input type="text" 
-//           placeholder="Search by title or author"
-//           value={this.state.searchQuery}
-//           onChange={(event) => this.handleChange(event.target.value)}
-//           />
-//         </div>
-//       </div>
-//       <div className="search-books-results">
-//         <ol className="books-grid">
-//             {this.state.bookMatches.map((searchedBook) => (
-//               <li key={searchedBook.id}>
-//                 <FilteredBookComponent book={searchedBook} />
-//               </li>
-//             ))}
-//         </ol>
-//       </div>
-//     </div>
-//   )
-//   }
-// }
