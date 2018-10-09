@@ -17,17 +17,18 @@ class BooksApp extends React.Component {
 
   componentDidMount(){
     BooksAPI.getAll().then((books)=> {
-      console.log(books)
+      //console.log(books)
       this.setState({ books })
     })
   }
-
+  
+  /* add the book with the new shelf status to the current books */
   changeShelf(updatedBook, newShelf){
-    console.log([updatedBook])
+    //console.log([updatedBook])
     updatedBook.shelf = newShelf
     BooksAPI.update(updatedBook, newShelf)
     .then(resp => {
-      console.log(resp) //array of objects
+      //console.log(resp) //array of objects
       this.setState(state => ({
         books: state.books.filter(currentBook => currentBook.id !== updatedBook.id).concat([updatedBook])
       }))

@@ -22,6 +22,7 @@ class FilteredBookComponent extends Component {
              </div>
          </div>
         <div className="book-title">{this.props.book.title}</div>
+        {/* check if there are any books if more that one spead them out with a space */}
         <div className="book-authors">{this.props.book.authors ? this.props.book.authors.join(" ") : ""}</div>
         </div>
       )

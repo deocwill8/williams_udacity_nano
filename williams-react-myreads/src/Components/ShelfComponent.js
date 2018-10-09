@@ -3,7 +3,7 @@ import BookComponent from './BookComponent'
 
 class ShelfComponent extends Component {
     componentDidMount(){
-        console.log(this)
+        //console.log(this)
     }
 
   render() {

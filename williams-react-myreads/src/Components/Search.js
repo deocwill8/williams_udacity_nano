@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import * as BooksAPI from '../BooksAPI'
 import FilteredBookComponent from './FilteredBookComponent';
 
@@ -9,7 +7,7 @@ import FilteredBookComponent from './FilteredBookComponent';
 
 class Search extends Component {
   componentDidMount(){
-    console.log('Search' ,this.props)
+    //console.log('Search' ,this.props)
 } 
   constructor(props){
     super(props)
@@ -20,13 +18,13 @@ class Search extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.updateBookMatches = this.updateBookMatches.bind(this)
-    this.updateShelfInformation = this.updateShelfInformation.bind(this)
+    this.updateShelfStatus = this.updateShelfStatus.bind(this)
     //console.log(this.state)
     //console.log(this.props.books)
   }
 
   handleChange = (query) => {
-    this.setState({ searchQuery: query.trim() })
+    this.setState({ searchQuery: query })
     this.updateBookMatches(query)
   }
 
@@ -42,7 +40,8 @@ class Search extends Component {
         if(result.error){
           this.setState({bookMatches: []})
         } else {
-          this.updateShelfInformation(result)
+          //call this helper function to persist the book shelf status to the list of filtered books
+          this.updateShelfStatus(result)
           this.setState({bookMatches: result})
         }
       })
@@ -52,13 +51,13 @@ class Search extends Component {
 
   }
 
-  updateShelfInformation(filteredResults) {
+  updateShelfStatus(filteredResults) {
     const currentBookIds = this.props.books
     const filterBookIds = filteredResults
     currentBookIds.forEach(currentBook => {
       filterBookIds.forEach(filterBook => {
         if(currentBook.id === filterBook.id){
-          console.log(currentBook.id)
+          //console.log(currentBook.id)
           filterBook.shelf = currentBook.shelf
         }
       })

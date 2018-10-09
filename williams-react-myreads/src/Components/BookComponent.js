@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class BookComponent extends Component {
     componentDidMount(){
-        console.log('Book' ,this.props)
+        //console.log('Book' ,this.props)
     } 
 
     render() {
@@ -22,6 +22,7 @@ class BookComponent extends Component {
             </div>
             </div>
             <div className="book-title">{this.props.bookInfo.title}</div>
+            {/* check if there are any books if more that one spead them out with a space */}
             <div className="book-authors">{this.props.bookInfo.authors ? this.props.bookInfo.authors.join(" ") : ""}</div>
       </div>
       )
