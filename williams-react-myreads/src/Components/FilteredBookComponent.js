@@ -12,7 +12,7 @@ class FilteredBookComponent extends Component {
             {/* ideal for templating the image url came from Udacity mentor Ryan Waite's YouTube walk through: https://www.youtube.com/watch?v=acJHkd6K5kI&t=4s */}
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks && this.props.book.imageLinks.thumbnail || ""})`}}></div>
             <div className="book-shelf-changer">
-            <select value={this.props.book.shelf || "none"}>
+            <select value={this.props.book.shelf || "none"} onChange={(e) => this.props.handleChange(this.props.book, e.target.value)}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>

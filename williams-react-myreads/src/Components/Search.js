@@ -20,7 +20,9 @@ class Search extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.updateBookMatches = this.updateBookMatches.bind(this)
-    console.log(this.state)
+    this.updateShelfInformation = this.updateShelfInformation.bind(this)
+    //console.log(this.state)
+    //console.log(this.props.books)
   }
 
   handleChange = (query) => {
@@ -35,11 +37,12 @@ class Search extends Component {
     //check if anything is in the input field 
     if(query.length > 0) {
       BooksAPI.search(query).then((result) => {
-        console.log(result)
+        //console.log(result)
         //check if query matches any of the results 
         if(result.error){
           this.setState({bookMatches: []})
         } else {
+          this.updateShelfInformation(result)
           this.setState({bookMatches: result})
         }
       })
@@ -47,6 +50,19 @@ class Search extends Component {
       this.setState({bookMatches: []})
     }
 
+  }
+
+  updateShelfInformation(filteredResults) {
+    const currentBookIds = this.props.books
+    const filterBookIds = filteredResults
+    currentBookIds.forEach(currentBook => {
+      filterBookIds.forEach(filterBook => {
+        if(currentBook.id === filterBook.id){
+          console.log(currentBook.id)
+          filterBook.shelf = currentBook.shelf
+        }
+      })
+    })
   }
 
   render() {
@@ -67,7 +83,7 @@ class Search extends Component {
                       <ol className="books-grid">
                           {this.state.bookMatches.map((searchedBook) => (
                             <li key={searchedBook.id}>
-                              <FilteredBookComponent book={searchedBook} />
+                              <FilteredBookComponent book={searchedBook}  handleChange={this.props.onChange}/>
                             </li>
                           ))}
                         </ol>
