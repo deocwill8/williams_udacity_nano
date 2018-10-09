@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class FilteredBookComponent extends Component {
     componentDidMount(){
-        console.log('Book' ,this.props)
+        //console.log('Book' ,this.props)
     } 
 
     render() {
