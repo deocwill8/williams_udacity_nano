@@ -31,7 +31,7 @@ class LocationsList extends Component {
           >Filter
           </button>
           <ul>
-            <li>Pizza Place</li>
+            <li>Mother Bears Pizza</li>
             <li>Wells Library</li>
             <li>School of Informatics</li>
             <li>Red Cross</li>
