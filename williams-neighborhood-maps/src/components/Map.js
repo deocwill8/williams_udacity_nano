@@ -10,8 +10,11 @@ import '../index.css'
 */
 
 class Map extends Component {
+  constructor(props){
+    super(props)
+  }
     componentDidMount(){
-      console.log('Map markers' ,this.props)
+      //console.log('markers' ,this.props)
       let googleMapsPromise = createGoogleMapsInstance();
 
       Promise.all([
@@ -20,26 +23,27 @@ class Map extends Component {
       .then(values => {
         console.log(values);
         let google = values[0];
-        let markers = [];
-        let position = 
-        //this.google = google;
 
+        // show the map with Bloomington In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.165325, lng: -86.52638569999999},
           zoom:15,
           mapTypeControl:false
         });
 
-        // this.props.locations.forEach(location => {
-        //   //make this work 
-        //   let marker = new google.maps.Marker({
-        //     position: position,
-        //     title: title,
-        //     icon: defaultIcon,
-        //     animation: google.maps.Animation.DROP,
-        //     id: i
-        // }); 
-        // })
+        //get the loacation markers from App.js
+        for (var location of this.props.locations) {
+          let position = location.location
+          let title = location.title
+          console.log(location);
+          let marker = new google.maps.Marker({
+            position: position,
+            title: title,
+            animation: google.maps.Animation.DROP,
+            id: title
+          }); 
+          marker.setMap(this.map)
+        }
       })
     } 
 
