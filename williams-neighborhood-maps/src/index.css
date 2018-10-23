@@ -13,10 +13,72 @@ code {
     monospace;
 }
 
+/* Header styles */
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#menu-icon{
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  margin-left: 1%;
+  margin-top: 5px;
+}
+
+.header-text{
+  align-self: center;
+  margin-right: 3%;
+}
+
+.line{
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+/* Map */
+
 #map{
-  bottom:0px;
-  height: 100%;
-  left: 35px;
   position: absolute;
+  bottom: 0px;
+  top: 55px;
+  left: 0;
   right: 0px;
+  height: 100%;
+}
+
+/* Location list */
+
+#locationListContainer{
+    width: 50vw;
+    height: 100vh;
+    background-color: #360A14;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    overflow: scroll;
+    z-index: 1000;
+}
+
+#locationListContainer.hide {
+    transform: translate3d(-50vw, 0, 0);
+}
+
+#locationListContainer.show {
+    transform: translate3d(0vw, 0, 0);
+    overflow: hidden;
+}
+
+.filter-button{
+    color: white;
+    font-size: 1em;
+}
+
+ul{
+    color: white;
+    font-size: 1em;
 }

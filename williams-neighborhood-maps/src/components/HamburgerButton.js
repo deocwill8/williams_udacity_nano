@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './hamburgerbutton.css'
+import '../index.css'
 
 /* The tutorial located at https://www.kirupa.com/react/smooth_sliding_menu_react_motion.htm
     was used to create the Sidebar, HamburgerButton, and Location List components in 
@@ -13,13 +13,14 @@ class HamburgerButton extends Component {
 
     render() {
       return (
-        <div id="button"
-            onMouseDown={this.props.handleMouseDown}
-        >
-            <div className="line"></div>
-            <div className="line"></div>
-            <div className="line"></div>
-        </div>
+          <div className="header-container">  
+            <div id="menu-icon" onMouseDown={this.props.handleMouseDown}>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            <div className="header-text">Neighborhood Map</div>
+          </div>
       )
     }
 }

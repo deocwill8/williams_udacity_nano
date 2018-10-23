@@ -11,6 +11,7 @@ import '../index.css'
 
 class Map extends Component {
     componentDidMount(){
+      console.log('Map markers' ,this.props)
       let googleMapsPromise = createGoogleMapsInstance();
 
       Promise.all([
@@ -19,13 +20,26 @@ class Map extends Component {
       .then(values => {
         console.log(values);
         let google = values[0];
+        let markers = [];
+        let position = 
         //this.google = google;
 
         this.map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.7413549, lng: -73.9980244},
-          zoom:13,
+          center: {lat: 39.165325, lng: -86.52638569999999},
+          zoom:15,
           mapTypeControl:false
         });
+
+        // this.props.locations.forEach(location => {
+        //   //make this work 
+        //   let marker = new google.maps.Marker({
+        //     position: position,
+        //     title: title,
+        //     icon: defaultIcon,
+        //     animation: google.maps.Animation.DROP,
+        //     id: i
+        // }); 
+        // })
       })
     } 
 

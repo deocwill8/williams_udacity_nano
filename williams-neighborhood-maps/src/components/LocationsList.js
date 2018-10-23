@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './locationlist.css'
+import '../index.css'
 
 /* The tutorial located at https://www.kirupa.com/react/smooth_sliding_menu_react_motion.htm
     was used to create the Sidebar, HamburgerButton, and Location List components in 
@@ -8,7 +8,7 @@ import './locationlist.css'
 
 class LocationsList extends Component {
     componentDidMount(){
-        console.log('Locations List' ,this.props)
+        // console.log('Locations List' ,this.props)
     } 
 
     render() {
