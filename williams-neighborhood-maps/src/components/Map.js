@@ -8,14 +8,22 @@ import '../index.css'
 
 /* Concept of using a separate utlity file came from https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
 */
+let contentString = '<p>Hello</p>';
+
 
 class Map extends Component {
   constructor(props){
     super(props)
+
+  
+   // this.createFourSquareInstance = this.createFourSquareInstance.bind(this);
   }
+ 
     componentDidMount(){
       //console.log('markers' ,this.props)
+      this.populateInfoWindow()
       let googleMapsPromise = createGoogleMapsInstance();
+
 
       Promise.all([
         googleMapsPromise
@@ -24,6 +32,10 @@ class Map extends Component {
         console.log(values);
         let google = values[0];
 
+        let infoWindow =  new google.maps.InfoWindow({
+          content: contentString
+        });
+
         // show the map with Bloomington In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.165325, lng: -86.52638569999999},
@@ -31,7 +43,7 @@ class Map extends Component {
           mapTypeControl:false
         });
 
-        //get the loacation markers from App.js
+        //get the loacation markers from the props sent from App.js
         for (var location of this.props.locations) {
           let position = location.location
           let title = location.title
@@ -43,9 +55,27 @@ class Map extends Component {
             id: title
           }); 
           marker.setMap(this.map)
+          marker.addListener('click', function(){
+            infoWindow.open(this.map, marker);
+        })
         }
       })
-    } 
+    }
+    
+   populateInfoWindow() {
+      const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';
+      const CLIENT_SECRET = '33OWT1QLPRX3K30JL5512ANPDLHUEW1NH4FQ4LPLLWYRYP3H';
+  
+      fetch(`https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20180323&ll=39.1640807,-86.51555819999999`)
+      .then(function(response) {
+        console.log(response)
+
+
+      })
+      .catch(function(error) {
+         console.log(error)
+      });
+    }
 
     render() {
       return (
