@@ -9,6 +9,7 @@ import '../index.css'
 /* Concept of using a separate utlity file came from https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
 */
 let contentString = '<p>Hello</p>';
+let forSquareLatLngValues = ''
 
 
 class Map extends Component {
@@ -21,7 +22,6 @@ class Map extends Component {
  
     componentDidMount(){
       //console.log('markers' ,this.props)
-      this.populateInfoWindow()
       let googleMapsPromise = createGoogleMapsInstance();
 
 
@@ -29,7 +29,6 @@ class Map extends Component {
         googleMapsPromise
       ])
       .then(values => {
-        console.log(values);
         let google = values[0];
 
         let infoWindow =  new google.maps.InfoWindow({
@@ -47,14 +46,18 @@ class Map extends Component {
         for (var location of this.props.locations) {
           let position = location.location
           let title = location.title
-          console.log(location);
+          forSquareLatLngValues = position.lat+","+position.lng
+          
           let marker = new google.maps.Marker({
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
             id: title
           }); 
+
           marker.setMap(this.map)
+
+          //this.populateInfoWindow(forSquareLatLngValues)
           marker.addListener('click', function(){
             infoWindow.open(this.map, marker);
         })
@@ -62,15 +65,17 @@ class Map extends Component {
       })
     }
     
-   populateInfoWindow() {
+   populateInfoWindow(latLngValue) {
       const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';
       const CLIENT_SECRET = '33OWT1QLPRX3K30JL5512ANPDLHUEW1NH4FQ4LPLLWYRYP3H';
+      let FSlatLngValues = latLngValue
   
-      fetch(`https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20180323&ll=39.1640807,-86.51555819999999`)
+      fetch(`https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20180323&ll=${FSlatLngValues}&limit=1`)
       .then(function(response) {
-        console.log(response)
-
-
+        return response.json(); //convert it to a readable json 
+      })
+      .then(function(venueJson) {
+        console.log(venueJson.response);
       })
       .catch(function(error) {
          console.log(error)
