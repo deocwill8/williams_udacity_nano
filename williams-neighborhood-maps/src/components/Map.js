@@ -8,16 +8,19 @@ import '../index.css'
 
 /* Concept of using a separate utlity file came from https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
 */
-let contentString = '<p>Hello</p>';
-let forSquareLatLngValues = ''
+//let contentString = '<p>Hello</p>';
 
 
 class Map extends Component {
   constructor(props){
     super(props)
 
-  
-   // this.createFourSquareInstance = this.createFourSquareInstance.bind(this);
+    this.state = {
+      contentString: '<p>Getting information about this marker...</p>',
+      forSquareLatLngValues: ''
+    }
+
+   this.populateInfoWindow = this.populateInfoWindow.bind(this);
   }
  
     componentDidMount(){
@@ -31,11 +34,12 @@ class Map extends Component {
       .then(values => {
         let google = values[0];
 
+        //create infoWindow
         let infoWindow =  new google.maps.InfoWindow({
-          content: contentString
+          content: this.state.contentString
         });
 
-        // show the map with Bloomington In as the center
+        // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.165325, lng: -86.52638569999999},
           zoom:15,
@@ -46,7 +50,7 @@ class Map extends Component {
         for (var location of this.props.locations) {
           let position = location.location
           let title = location.title
-          forSquareLatLngValues = position.lat+","+position.lng
+          this.state.forSquareLatLngValues = position.lat+","+position.lng
           
           let marker = new google.maps.Marker({
             position: position,
@@ -55,32 +59,40 @@ class Map extends Component {
             id: title
           }); 
 
+          //show the map with the markers on it
           marker.setMap(this.map)
 
-          //this.populateInfoWindow(forSquareLatLngValues)
+          //put information in the info window
+          this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
+
           marker.addListener('click', function(){
             infoWindow.open(this.map, marker);
-        })
+          })
         }
       })
     }
     
-   populateInfoWindow(latLngValue) {
-      const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';
-      const CLIENT_SECRET = '33OWT1QLPRX3K30JL5512ANPDLHUEW1NH4FQ4LPLLWYRYP3H';
-      let FSlatLngValues = latLngValue
-  
-      fetch(`https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20180323&ll=${FSlatLngValues}&limit=1`)
-      .then(function(response) {
-        return response.json(); //convert it to a readable json 
-      })
-      .then(function(venueJson) {
-        console.log(venueJson.response);
-      })
-      .catch(function(error) {
-         console.log(error)
-      });
-    }
+  populateInfoWindow(newInfowindow, latLngValue) {
+    const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';
+    const CLIENT_SECRET = '33OWT1QLPRX3K30JL5512ANPDLHUEW1NH4FQ4LPLLWYRYP3H';
+    let FSlatLngValues = latLngValue;
+
+    fetch(`https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20180323&ll=${FSlatLngValues}&limit=1`)
+    .then(response => {
+      return response.json(); //convert it to a readable json 
+    })
+    .then(venueJson => {
+      let venueName = venueJson.response.venues[0].name;
+      console.log(venueName);
+      
+      //newInfowindow.setContent(`<p>Venue name: ${venueName}</p>`);
+      //this.setState({contentString: venueJson.response.venues[0].name})
+      console.log(newInfowindow)
+    })
+    .catch(error => {
+       console.log(error)
+    });
+  }
 
     render() {
       return (
