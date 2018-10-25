@@ -15,7 +15,6 @@ class Map extends Component {
     super(props)
 
     this.state = {
-      contentString: '<p>Getting information about this marker...</p>',
       forSquareLatLngValues: ''
     }
 
@@ -33,11 +32,6 @@ class Map extends Component {
       .then(values => {
         let google = values[0];
 
-        //create infoWindow
-        let infoWindow =  new google.maps.InfoWindow({
-          //content: this.state.contentString
-        });
-
         // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.165325, lng: -86.52638569999999},
@@ -46,10 +40,14 @@ class Map extends Component {
         });
 
         //get the loacation markers from the props sent from App.js
+        //DECONSTRUCT THIS
         for (var location of this.props.locations) {
           let position = location.location
           let title = location.title
           this.state.forSquareLatLngValues = position.lat+","+position.lng
+
+          //create infoWindow
+          let infoWindow = new google.maps.InfoWindow();
           
           let marker = new google.maps.Marker({
             position: position,
@@ -82,14 +80,9 @@ class Map extends Component {
       return response.json(); //convert it to a readable json 
     })
     .then(venueJson => {
-      for (var venueName of venueJson.response.venues) {
-        let name = venueName.name
-        infowindow.setContent(venueName.name); 
-        console.log(venueName.name);
-      }
-
-      //let venueName = venueJson.response.venues[0].name;
-      //this.setState({contentString: venueJson.response.venues[0].name})
+      var venueName = venueJson.response.venues[0].name;
+      infowindow.setContent(venueName); 
+      console.log(venueName);
     })
     .catch(error => {
        console.log(error)
