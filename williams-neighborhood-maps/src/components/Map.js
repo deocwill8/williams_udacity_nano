@@ -8,7 +8,6 @@ import '../index.css'
 
 /* Concept of using a separate utlity file came from https://www.youtube.com/watch?v=5J6fs_BlVC0&feature=youtu.be
 */
-//let contentString = '<p>Hello</p>';
 
 
 class Map extends Component {
@@ -36,7 +35,7 @@ class Map extends Component {
 
         //create infoWindow
         let infoWindow =  new google.maps.InfoWindow({
-          content: this.state.contentString
+          //content: this.state.contentString
         });
 
         // show the map with Bloomington, In as the center
@@ -60,7 +59,8 @@ class Map extends Component {
           }); 
 
           //show the map with the markers on it
-          marker.setMap(this.map)
+          marker.setMap(this.map);
+          infoWindow.setContent("<p>loading</p>");
 
           //put information in the info window
           this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
@@ -72,7 +72,7 @@ class Map extends Component {
       })
     }
     
-  populateInfoWindow(newInfowindow, latLngValue) {
+  populateInfoWindow(infowindow, latLngValue) {
     const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';
     const CLIENT_SECRET = '33OWT1QLPRX3K30JL5512ANPDLHUEW1NH4FQ4LPLLWYRYP3H';
     let FSlatLngValues = latLngValue;
@@ -82,12 +82,14 @@ class Map extends Component {
       return response.json(); //convert it to a readable json 
     })
     .then(venueJson => {
-      let venueName = venueJson.response.venues[0].name;
-      console.log(venueName);
-      
-      //newInfowindow.setContent(`<p>Venue name: ${venueName}</p>`);
+      for (var venueName of venueJson.response.venues) {
+        let name = venueName.name
+        infowindow.setContent(venueName.name); 
+        console.log(venueName.name);
+      }
+
+      //let venueName = venueJson.response.venues[0].name;
       //this.setState({contentString: venueJson.response.venues[0].name})
-      console.log(newInfowindow)
     })
     .catch(error => {
        console.log(error)
