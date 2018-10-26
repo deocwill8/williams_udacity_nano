@@ -33,6 +33,10 @@ class SideBar extends Component {
     });
   }
 
+  componentDidMount(){
+    console.log('sidebar' ,this.props)
+  }
+
     render() {
       return (
         <div className="container">
@@ -42,6 +46,7 @@ class SideBar extends Component {
           <LocationList 
             handleMouseDown={this.handleMouseDown} 
             menuVisibility={this.state.visible}
+            locations= {this.props.locations}
           />
         </div>
       )

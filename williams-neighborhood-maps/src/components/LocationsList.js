@@ -8,7 +8,7 @@ import '../index.css'
 
 class LocationsList extends Component {
     componentDidMount(){
-        // console.log('Locations List' ,this.props)
+      console.log('Locations List' ,this.props)
     } 
 
     render() {
@@ -30,13 +30,13 @@ class LocationsList extends Component {
             className="filter-button"
           >Filter
           </button>
-          <ul>
-            <li>Mother Bears Pizza</li>
-            <li>Wells Library</li>
-            <li>School of Informatics</li>
-            <li>Red Cross</li>
-            <li>Bears</li>
-          </ul>
+          <ol>
+            {this.props.locations.map((location) => (
+              <li key={location.title}>
+                  {location.title}
+              </li> 
+            ))}
+          </ol>
         </div>
       )
     }

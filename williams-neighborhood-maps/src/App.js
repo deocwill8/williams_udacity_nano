@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div>
           <Map  locations={this.state.locations}/>
-          <Sidebar />
+          <Sidebar locations={this.state.locations} />
       </div>
     );
   }
