@@ -44,7 +44,7 @@ class Map extends Component {
         for (var location of this.props.locations) {
           let position = location.location
           let title = location.title
-          this.state.forSquareLatLngValues = position.lat+","+position.lng
+          this.setState({ forSquareLatLngValues : position.lat+","+position.lng })
 
           //create infoWindow
           let infoWindow = new google.maps.InfoWindow();
@@ -61,7 +61,7 @@ class Map extends Component {
           infoWindow.setContent("<p>loading</p>");
 
           //put information in the info window
-          this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
+          //this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
 
           marker.addListener('click', function(){
             infoWindow.open(this.map, marker);

@@ -44,6 +44,7 @@ class SideBar extends Component {
             handleMouseDown={this.handleMouseDown} 
           />
           <LocationList 
+            showLocationMatches={this.props.showLocationMatches}
             handleMouseDown={this.handleMouseDown} 
             menuVisibility={this.state.visible}
             locations= {this.props.locations}

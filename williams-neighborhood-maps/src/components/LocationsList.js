@@ -7,12 +7,24 @@ import '../index.css'
 */ 
 
 class LocationsList extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      searchQuery: ''
+    }
+  }
     componentDidMount(){
-      console.log('Locations List' ,this.props)
+      console.log('Locations List',this.props)
     } 
 
+    handleChange = (filter) => {
+      this.setState({ searchQuery: filter })
+      this.props.showLocationMatches(this.props.locations, this.state.searchQuery);
+    }
+
     render() {
-      let visibility = "hide";
+      let visibility = "show"; //figure this out 
       
       if(this.props.menuVisibility){
         visibility = "show";
@@ -23,13 +35,11 @@ class LocationsList extends Component {
           onMouseDown={this.props.handleMouseDown}
           className={visibility}
         >
-          <input type="text" 
+          <input 
+            onChange={(event) => this.handleChange(event.target.value)}
+            type="text" 
             placeholder="Enter Search"
           />
-          <button
-            className="filter-button"
-          >Filter
-          </button>
           <ol>
             {this.props.locations.map((location) => (
               <li key={location.title}>

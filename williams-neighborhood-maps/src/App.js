@@ -16,12 +16,21 @@ class App extends Component {
     }
   }
 
+  showLocationMatches = (locations, query) => {
+    for (let matchedLocation of this.state.locations) {
+      if(matchedLocation.title.toLowerCase().includes(query.toLowerCase())){
+        console.log(matchedLocation.title);
+        return matchedLocation.title;
+      }
+    }
+  }
+
 
   render() {
     return (
       <div>
           <Map  locations={this.state.locations}/>
-          <Sidebar locations={this.state.locations} />
+          <Sidebar  showLocationMatches={this.showLocationMatches} locations={this.state.locations} />
       </div>
     );
   }
