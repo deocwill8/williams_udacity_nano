@@ -11,16 +11,18 @@ class LocationsList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchQuery: ''
+      searchQuery: '',
+      locationsList: this.props.locations
     }
   }
     componentDidMount(){
-      console.log('Locations List',this.props)
+      //console.log('Locations List',this.props);
     } 
 
     handleChange = (filter) => {
-      this.setState({ searchQuery: filter })
-      this.props.showLocationMatches(this.props.locations, this.state.searchQuery);
+      this.props.showLocationMatches(this.props.locations, filter);
+      console.log(this.props.locations);
+      this.setState({locationsList: this.props.locations})
     }
 
     render() {
@@ -33,20 +35,19 @@ class LocationsList extends Component {
       return (
         <div id="locationListContainer"
           onMouseDown={this.props.handleMouseDown}
-          className={visibility}
-        >
+          className={visibility} >
           <input 
             onChange={(event) => this.handleChange(event.target.value)}
             type="text" 
             placeholder="Enter Search"
           />
-          <ol>
-            {this.props.locations.map((location) => (
+          <ul>
+            {this.state.locationsList.map((location) => (
               <li key={location.title}>
                   {location.title}
               </li> 
             ))}
-          </ol>
+          </ul>
         </div>
       )
     }

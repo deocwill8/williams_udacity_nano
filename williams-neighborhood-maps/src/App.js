@@ -17,11 +17,20 @@ class App extends Component {
   }
 
   showLocationMatches = (locations, query) => {
-    for (let matchedLocation of this.state.locations) {
+    for (let matchedLocation of locations) {
       if(matchedLocation.title.toLowerCase().includes(query.toLowerCase())){
-        console.log(matchedLocation.title);
-        return matchedLocation.title;
+        //console.log(matchedLocation.title);
+        // this.setState(prevState => ({
+        //   locations: prevState.locations.filter(location => location.title !== matchedLocation.title).concat([matchedLocation])
+        // }))
+       // this.setState({ locations: thisstate.locations.concat([matchedLocation] }) 
+       this.setState( state => ({
+         locations: state.locations.filter(currentLocation => currentLocation.title.toLowerCase().includes(query.toLowerCase()) )
+       }))
+       console.log(this.state)
+      
       }
+
     }
   }
 

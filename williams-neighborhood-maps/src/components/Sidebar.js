@@ -22,8 +22,8 @@ class SideBar extends Component {
   handleMouseDown(e){
     this.toogleMenu();
 
-    console.log("clicked");
-    console.log(this.state.visible)
+    //console.log("clicked");
+    //console.log(this.state.visible)
     e.stopPropagation();
   }
 
@@ -34,7 +34,7 @@ class SideBar extends Component {
   }
 
   componentDidMount(){
-    console.log('sidebar' ,this.props)
+    //console.log('sidebar' ,this.props)
   }
 
     render() {

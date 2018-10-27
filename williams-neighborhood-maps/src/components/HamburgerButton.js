@@ -8,7 +8,7 @@ import '../index.css'
 
 class HamburgerButton extends Component {
     componentDidMount(){
-        console.log('Button' ,this.props)
+        //console.log('Button' ,this.props)
     } 
 
     render() {
