@@ -39,7 +39,7 @@ class SideBar extends Component {
 
     render() {
       return (
-        <div className="container">
+        <div>
           <HamburgerButton 
             handleMouseDown={this.handleMouseDown} 
           />
@@ -47,7 +47,7 @@ class SideBar extends Component {
             showLocationMatches={this.props.showLocationMatches}
             handleMouseDown={this.handleMouseDown} 
             menuVisibility={this.state.visible}
-            locations= {this.props.locations}
+            locations={this.props.locations}
           />
         </div>
       )

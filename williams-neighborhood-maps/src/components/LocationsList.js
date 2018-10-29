@@ -26,7 +26,7 @@ class LocationsList extends Component {
     }
 
     render() {
-      let visibility = "show"; //figure this out 
+      let visibility = "hide"; //figure this out 
       
       if(this.props.menuVisibility){
         visibility = "show";
@@ -38,7 +38,7 @@ class LocationsList extends Component {
           className={visibility} >
           <input 
             onChange={(event) => this.handleChange(event.target.value)}
-            type="text" 
+            type="search" 
             placeholder="Enter Search"
           />
           <ul>

@@ -38,7 +38,7 @@ class App extends Component {
   render() {
     return (
       <div>
-          <Map  locations={this.state.locations}/>
+          <Map locations={this.state.locations}/>
           <Sidebar  showLocationMatches={this.showLocationMatches} locations={this.state.locations} />
       </div>
     );
