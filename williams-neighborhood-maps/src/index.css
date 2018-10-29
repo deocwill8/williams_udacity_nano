@@ -71,4 +71,5 @@ body, html{
 ul{
     color: white;
     font-size: 1em;
+    list-style: none;
 }

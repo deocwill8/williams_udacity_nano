@@ -20,25 +20,23 @@ class LocationsList extends Component {
     } 
 
     handleChange = (filter) => {
-      this.props.showLocationMatches(this.props.locations, filter);
-      console.log(this.props.locations);
-      this.setState({locationsList: this.props.locations})
+      this.props.showLocationMatches(filter);
     }
 
     render() {
-      let visibility = "hide"; //figure this out 
+      let visibility = "show"; //figure this out //default should be hide
       
       if(this.props.menuVisibility){
         visibility = "show";
       }
 
       return (
-        <div id="locationListContainer"
+        <div id="locationListContainer" 
           onMouseDown={this.props.handleMouseDown}
           className={visibility} >
           <input 
             onChange={(event) => this.handleChange(event.target.value)}
-            type="search" 
+            type="text" 
             placeholder="Enter Search"
           />
           <ul>
