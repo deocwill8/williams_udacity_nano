@@ -17,10 +17,16 @@ class App extends Component {
   }
 
   showLocationMatches = (query) => {
-    this.setState( state => ({
-      locations: state.locations.filter(currentLocation => currentLocation.title.toLowerCase().includes(query.toLowerCase()) )
-    }))
-    console.log(this.state)
+    if(query !== ''){
+      this.setState( state => ({
+        locations: state.locations.filter(currentLocation => currentLocation.title.toLowerCase().indexOf(query.toLowerCase()) > -1 )
+      }))
+      console.log(this.state)
+    } else {
+      this.setState({locations: this.state.locations})
+      console.log(this.state)
+    }
+
   }
 
 

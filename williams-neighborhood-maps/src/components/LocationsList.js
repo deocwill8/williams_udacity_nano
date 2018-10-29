@@ -11,8 +11,7 @@ class LocationsList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchQuery: '',
-      locationsList: this.props.locations
+      searchQuery: ''
     }
   }
     componentDidMount(){
@@ -40,7 +39,7 @@ class LocationsList extends Component {
             placeholder="Enter Search"
           />
           <ul>
-            {this.state.locationsList.map((location) => (
+            {this.props.locations.map((location) => (
               <li key={location.title}>
                   {location.title}
               </li> 
