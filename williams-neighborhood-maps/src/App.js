@@ -12,29 +12,30 @@ class App extends Component {
         {title: 'School of Informatics', location: {lat: 39.172971, lng: -86.52297399999998}},
         {title: 'Eigenmann Hall', location: {lat: 39.1707441, lng: -86.50836950000001}},
         {title: 'Bears Place', location: {lat: 39.16404389999999, lng: -86.51678400000003}}
-      ]
+      ],
+      filteredLocations:[]
     }
   }
 
+  componentDidMount(){
+    this.setState({filteredLocations: this.state.locations})
+  } 
+
   showLocationMatches = (query) => {
     if(query !== ''){
-      this.setState( state => ({
-        locations: state.locations.filter(currentLocation => currentLocation.title.toLowerCase().indexOf(query.toLowerCase()) > -1 )
-      }))
-      console.log(this.state)
+      let filteredLocations = this.state.locations.filter(currentLocation => currentLocation.title.toLowerCase().indexOf(query.toLowerCase()) > -1 )
+      this.setState({filteredLocations})
     } else {
-      this.setState({locations: this.state.locations})
-      console.log(this.state)
+      this.setState({filteredLocations: this.state.locations})
     }
-
   }
 
 
   render() {
     return (
       <div>
-          <Map locations={this.state.locations}/>
-          <Sidebar  showLocationMatches={this.showLocationMatches} locations={this.state.locations} />
+          <Map showLocationMatches={this.showLocationMatches} locations={this.state.filteredLocations}/>
+          <Sidebar  showLocationMatches={this.showLocationMatches} locations={this.state.filteredLocations} />
       </div>
     );
   }
