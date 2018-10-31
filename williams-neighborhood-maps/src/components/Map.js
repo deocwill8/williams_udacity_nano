@@ -50,8 +50,9 @@ class Map extends Component {
           //create infoWindow
           let infoWindow = new google.maps.InfoWindow();
           
-          this.marker = new google.maps.Marker({
+          let marker = new google.maps.Marker({
             position: position,
+            map: this.map,
             title: title,
             animation: google.maps.Animation.DROP,
             id: title
@@ -59,17 +60,16 @@ class Map extends Component {
 
 
           //push markers to a list
-          this.markers.push(this.marker);
+          //this.markers.push(marker);
 
           //show the map with the markers on it
-          this.marker.setMap(this.map);
           infoWindow.setContent("<p>loading</p>");
 
           //put information in the info window
           //this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
 
-          this.marker.addListener('click', function(){
-            infoWindow.open(this.map, this.marker);
+          marker.addListener('click', function(){
+            infoWindow.open(this.map, marker);
           })
         }
         //console.log(this.markers);
