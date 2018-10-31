@@ -60,7 +60,7 @@ class Map extends Component {
 
 
           //push markers to a list
-          //this.markers.push(marker);
+          this.props.markers.push(marker);
 
           //show the map with the markers on it
           infoWindow.setContent("<p>loading</p>");
@@ -72,7 +72,7 @@ class Map extends Component {
             infoWindow.open(this.map, marker);
           })
         }
-        //console.log(this.markers);
+        this.props.updateMarkers(this.props.markers);
       })
     }
   
@@ -89,7 +89,6 @@ class Map extends Component {
     .then(venueJson => {
       var venueName = venueJson.response.venues[0].name;
       infowindow.setContent(venueName); 
-      console.log(venueName);
     })
     .catch(error => {
        console.log(error)
