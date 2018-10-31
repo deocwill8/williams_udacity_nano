@@ -43,7 +43,7 @@ body, html{
 /* Location list */
 
 #locationListContainer{
-    width: 50vw;
+    width: 24vw;
     height: 100vh;
     background-color: #360A14;
     position: fixed;

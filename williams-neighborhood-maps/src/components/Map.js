@@ -15,14 +15,15 @@ class Map extends Component {
     super(props)
 
     this.state = {
-      forSquareLatLngValues: ''
+      forSquareLatLngValues: '',
+      query: this.props.queryString
     }
 
    this.populateInfoWindow = this.populateInfoWindow.bind(this);
   }
  
     componentDidMount(){
-      //console.log('markers' ,this.props)
+      //console.log('markers' ,this.props);
       let googleMapsPromise = createGoogleMapsInstance();
 
 
@@ -31,6 +32,7 @@ class Map extends Component {
       ])
       .then(values => {
         let google = values[0];
+        this.markers = [];
 
         // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
@@ -40,33 +42,37 @@ class Map extends Component {
         });
 
         //get the loacation markers from the props sent from App.js
-        //DECONSTRUCT THIS
-        for (var location of this.props.locations) {
-          let position = location.location
-          let title = location.title
-          this.setState({ forSquareLatLngValues : position.lat+","+position.lng })
+        for (let location of this.props.locations) {
+          let position = location.location;
+          let title = location.title;
+          this.setState({ forSquareLatLngValues : position.lat+","+position.lng });
 
           //create infoWindow
           let infoWindow = new google.maps.InfoWindow();
           
-          let marker = new google.maps.Marker({
+          this.marker = new google.maps.Marker({
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
             id: title
           }); 
 
+
+          //push markers to a list
+          this.markers.push(this.marker);
+
           //show the map with the markers on it
-          marker.setMap(this.map);
+          this.marker.setMap(this.map);
           infoWindow.setContent("<p>loading</p>");
 
           //put information in the info window
           //this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
 
-          marker.addListener('click', function(){
-            infoWindow.open(this.map, marker);
+          this.marker.addListener('click', function(){
+            infoWindow.open(this.map, this.marker);
           })
         }
+        //console.log(this.markers);
       })
     }
   
