@@ -15,8 +15,7 @@ class Map extends Component {
     super(props)
 
     this.state = {
-      forSquareLatLngValues: '',
-      query: this.props.queryString
+      forSquareLatLngValues: ''
     }
 
    this.populateInfoWindow = this.populateInfoWindow.bind(this);
@@ -32,7 +31,6 @@ class Map extends Component {
       ])
       .then(values => {
         let google = values[0];
-        this.markers = [];
 
         // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
@@ -59,7 +57,7 @@ class Map extends Component {
           }); 
 
 
-          //push markers to a list
+          //push original markers to a list
           this.props.markers.push(marker);
 
           //show the map with the markers on it
@@ -72,7 +70,7 @@ class Map extends Component {
             infoWindow.open(this.map, marker);
           })
         }
-        this.props.updateMarkers(this.props.markers);
+        this.props.updateMarkers(this.props.markers, this.props.queryString);
       })
     }
   

@@ -35,18 +35,20 @@ class App extends Component {
   //   }
   // }
 
-  showLocationMatches = (query) => {
-      let filteredLocations = this.state.locations.filter(currentLocation => currentLocation.title.toLowerCase().indexOf(query.toLowerCase()) > -1 );
+  showLocationMatches = (queryStr) => {
+      let filteredLocations = this.state.locations.filter(currentLocation => currentLocation.title.toLowerCase().indexOf(queryStr.toLowerCase()) > -1 );
       this.setState({filteredLocations});
-      this.setState({query});
-      this.updateMarkers(this.state.markers);
+      this.setState({query: queryStr});
+      console.log("From param: " + queryStr);
+      console.log("From state: " + this.state.query);
+      this.updateMarkers(this.state.markers, queryStr);
   }
 
-  updateMarkers = (markers) => {
+  updateMarkers = (markers, query) => {
     //go through all the current markers 
     //then hide show based on the query 
     markers.forEach(marker => {
-      if(marker.title.toLowerCase().includes(this.state.query.toLowerCase()) ){
+      if(marker.title.toLowerCase().includes(query)){
         marker.setVisible(true);
       } else {
         marker.setVisible(false);
@@ -57,7 +59,7 @@ class App extends Component {
   render() {
     return (
       <div>
-          <Map queryString={this.state.query} markers={this.state.markers} updateMarkers={this.updateMarkers} locations={this.state.filteredLocations}/>
+          <Map queryString={this.state.queryStr} markers={this.state.markers} updateMarkers={this.updateMarkers} locations={this.state.filteredLocations}/>
           <Sidebar showLocationMatches={this.showLocationMatches} locations={this.state.filteredLocations} />
       </div>
     );
