@@ -22,6 +22,10 @@ class LocationsList extends Component {
       this.props.showLocationMatches(filter);
     }
 
+    handleClick = (location) => {
+      console.log(location);
+    }
+
     render() {
       let visibility = "show"; //figure this out //default should be hide
       
@@ -40,7 +44,7 @@ class LocationsList extends Component {
           />
           <ul>
             {this.props.locations.map((location) => (
-              <li key={location.title}>
+              <li key={location.title} onClick={() => {this.handleClick(location)}}>
                   {location.title}
               </li> 
             ))}

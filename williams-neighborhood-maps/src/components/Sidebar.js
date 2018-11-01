@@ -48,6 +48,7 @@ class SideBar extends Component {
             handleMouseDown={this.handleMouseDown} 
             menuVisibility={this.state.visible}
             locations={this.props.locations}
+            markers={this.props.markers} 
           />
         </div>
       )

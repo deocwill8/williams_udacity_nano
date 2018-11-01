@@ -49,7 +49,7 @@ class App extends Component {
     return (
       <div>
           <Map queryString={this.state.query} markers={this.state.markers} updateMarkers={this.updateMarkers} locations={this.state.filteredLocations}/>
-          <Sidebar showLocationMatches={this.showLocationMatches} locations={this.state.filteredLocations} />
+          <Sidebar markers={this.state.markers} showLocationMatches={this.showLocationMatches} locations={this.state.filteredLocations} />
       </div>
     );
   }
