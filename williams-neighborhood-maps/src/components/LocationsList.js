@@ -22,8 +22,14 @@ class LocationsList extends Component {
       this.props.showLocationMatches(filter);
     }
 
+    /*
+    received help from @Forrest(FEND) in the #fend_proj_7 channel, 
+    he encouraged me to use find instead of filter to get the 
+    selected marker 
+    */
     handleClick = (location) => {
-      console.log(location);
+      let selectedMarker = this.props.markers.find(marker => marker.title === location.title);
+      window.google.maps.event.trigger(selectedMarker, 'click');
     }
 
     render() {
