@@ -39,15 +39,15 @@ class Map extends Component {
           mapTypeControl:false
         });
 
+        //create infoWindow
+        let infoWindow = new google.maps.InfoWindow();
+
         //get the loacation markers from the props sent from App.js
         for (let location of this.props.locations) {
           let position = location.location;
           let title = location.title;
           this.setState({ forSquareLatLngValues : position.lat+","+position.lng });
 
-          //create infoWindow
-          let infoWindow = new google.maps.InfoWindow();
-          
           let marker = new google.maps.Marker({
             position: position,
             map: this.map,
@@ -68,6 +68,14 @@ class Map extends Component {
 
           marker.addListener('click', function(){
             infoWindow.open(this.map, marker);
+            if (marker.getAnimation() !== null) {
+              marker.setAnimation(null);
+            } else {
+              marker.setAnimation(window.google.maps.Animation.BOUNCE);
+              window.setTimeout(() => {
+                marker.setAnimation(null);
+              }, 2000)
+            }
           })
         }
         this.props.updateMarkers(this.props.markers, this.props.queryString);
