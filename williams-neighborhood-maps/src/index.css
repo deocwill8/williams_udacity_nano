@@ -34,7 +34,7 @@ body, html{
   left: 0;
   width: 25vw;
   height: 100vh;
-  background-color: #360A14;
+  background-color: #FFFACC;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@ ul{
   flex-shrink: 1;
 }
 
-/* Tablets */
+/* Tablets
 
 @media screen and (min-width: 361px) and (max-width: 768px) {
   .search-input {
@@ -81,7 +81,7 @@ ul{
     padding: 10px;
   }
   .list-locations {
-    border: 1px #fffdd0 solid;
+    border: 1px #360A14 solid;
     height: 25px;
     padding-top: 7px;
     color: black;
@@ -92,7 +92,7 @@ ul{
     margin-right: 35px;
     margin-bottom: 15px;
     flex-shrink: 1;
-  }
+  } 
 
   #map {
     position: absolute;
@@ -103,9 +103,10 @@ ul{
   } 
  
   }
+  */
 /* Smaller screens such as phones  */
 
-@media screen and (min-width: 0px) and (max-width: 375px) {
+/* @media screen and (min-width: 0px) and (max-width: 375px) {
   #locationListContainer {
     position: fixed;
     top: 0;
@@ -154,4 +155,4 @@ ul{
     margin-bottom: 15px;
     flex-shrink: 1;
   }
-}
+} */

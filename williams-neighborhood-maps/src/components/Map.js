@@ -15,15 +15,18 @@ class Map extends Component {
     super(props)
 
     this.state = {
-      forSquareLatLngValues: ''
+      forSquareLatLngValues: '',
+      currentInfoWindow: null
     }
 
    this.populateInfoWindow = this.populateInfoWindow.bind(this);
+   this.setCurrentInfoWindow = this.setCurrentInfoWindow.bind(this);
   }
  
     componentDidMount(){
       //console.log('markers' ,this.props);
       let googleMapsPromise = createGoogleMapsInstance();
+      this.currentInfoWindow = null;
 
       googleMapsPromise.then(values => {
         let google = values;
@@ -34,9 +37,6 @@ class Map extends Component {
           zoom:15,
           mapTypeControl:false
         });
-
-        //create infoWindow
-        let infoWindow = new google.maps.InfoWindow();
 
         //get the loacation markers from the props sent from App.js
         for (let location of this.props.locations) {
@@ -56,14 +56,21 @@ class Map extends Component {
           //push original markers to a list
           this.props.markers.push(marker);
 
+          //create infoWindow
+          let infoWindow = new google.maps.InfoWindow();
+
           //show the map with the markers on it
           infoWindow.setContent("<p>loading</p>");
 
           //put information in the info window
-          //this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
+          this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
 
-          marker.addListener('click', function(){
+          marker.addListener('click', () => {
+            if(this.state.currentInfoWindow !== null){
+              this.state.currentInfoWindow.close();
+            } 
             infoWindow.open(this.map, marker);
+            this.setCurrentInfoWindow(infoWindow);
             if (marker.getAnimation() !== null) {
               marker.setAnimation(null);
             } else {
@@ -76,6 +83,10 @@ class Map extends Component {
         }
         this.props.updateMarkers(this.props.markers, this.props.queryString);
       })
+    }
+
+    setCurrentInfoWindow(newInfoWindow){
+      this.setState({currentInfoWindow: newInfoWindow})
     }
  
   populateInfoWindow(infowindow, latLngValue) {
@@ -99,8 +110,8 @@ class Map extends Component {
     render() {
       return (
         <section>
-          <label for="map"></label>
-          <div id="map" role="application" id="map"></div>
+          <label htmlFor="map"></label>
+          <div id="map" role="application"></div>
         </section>
       )
     }
