@@ -25,12 +25,8 @@ class Map extends Component {
       //console.log('markers' ,this.props);
       let googleMapsPromise = createGoogleMapsInstance();
 
-
-      Promise.all([
-        googleMapsPromise
-      ])
-      .then(values => {
-        let google = values[0];
+      googleMapsPromise.then(values => {
+        let google = values;
 
         // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
@@ -81,8 +77,7 @@ class Map extends Component {
         this.props.updateMarkers(this.props.markers, this.props.queryString);
       })
     }
-  
-  //how to put this in common js?  
+ 
   populateInfoWindow(infowindow, latLngValue) {
     const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';
     const CLIENT_SECRET = '33OWT1QLPRX3K30JL5512ANPDLHUEW1NH4FQ4LPLLWYRYP3H';
@@ -97,15 +92,16 @@ class Map extends Component {
       infowindow.setContent(venueName); 
     })
     .catch(error => {
-       console.log(error)
+      infowindow.setContent("Could not get data from Foursquare Api"); 
     });
   }
 
     render() {
       return (
-        <div>
-          <div id="map"></div>
-        </div>
+        <section>
+          <label for="map"></label>
+          <div id="map" role="application" id="map"></div>
+        </section>
       )
     }
 }

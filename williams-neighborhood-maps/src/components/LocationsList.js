@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import '../index.css'
 
-/* The tutorial located at https://www.kirupa.com/react/smooth_sliding_menu_react_motion.htm
-    was used to create the Sidebar, HamburgerButton, and Location List components in 
-    regards to the menu sliding in and sliding out
-*/ 
-
 class LocationsList extends Component {
 
   constructor(props){
@@ -14,9 +9,6 @@ class LocationsList extends Component {
       searchQuery: ''
     }
   }
-    componentDidMount(){
-      //console.log('Locations List',this.props);
-    } 
 
     handleChange = (filter) => {
       this.props.showLocationMatches(filter);
@@ -33,34 +25,39 @@ class LocationsList extends Component {
     }
 
     render() {
-      let visibility = "hide";
-      
-      if(this.props.menuVisibility){
-        visibility = "show";
-      }
-
       return (
-        <div id="locationListContainer" className={visibility}>
-          <div>
+        <section id="locationListContainer">
+          <section role="group">
+          <h1>Indiana University</h1>
+          <label htmlFor="searchInput" role="list"></label>
           <input 
             onChange={(event) => this.handleChange(event.target.value)}
             type="text" 
+            role="search"
+            tabIndex="1"
+            id="searchInput"
             placeholder="Enter Search"
             className="search-input"
           />
-          <button
-          onMouseDown={this.props.handleMouseDown}>
-          Close
-          </button>
-          </div>
-          <ul>
+          </section>
+          <section role="group">
+          <label htmlFor="locationList"></label>
+          <ul id="locationList">
             {this.props.locations.map((location) => (
-              <li className="listLocations" key={location.title} onClick={() => {this.handleClick(location)}}>
+              <li role="button" tabIndex="2" className="list-locations" key={location.title} onClick={(event) => {this.handleClick(location)}}>
                   {location.title}
               </li> 
             ))}
           </ul>
-        </div>
+          </section>
+          <section>
+            <p>Map and map markers are provided by Google Maps Api</p>
+            <p>Information in the descriptions that show when marker is clicked 
+              is provided by the FourSquare Api. 
+            </p>
+          </section>
+
+        </section>
       )
     }
 }

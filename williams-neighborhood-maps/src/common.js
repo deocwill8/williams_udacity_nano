@@ -7,16 +7,10 @@
 
   export function createGoogleMapsInstance() {
      return new Promise((resolve) => {
-        // Add a global handler for when the API finishes loading
         window.resolveGoogleMapsPromise = () => {
-          // Resolve the promise
           resolve(window.google);
-
-          // Tidy up
           delete window.resolveGoogleMapsPromise;
         };
-
-        // Load the Google Maps API
         const script = document.createElement("script");
         const API = 'AIzaSyCUmimnNaC738CQKm0it8ZYabmy0z8eg7U';
         script.src = `https://maps.googleapis.com/maps/api/js?key=${API}&callback=resolveGoogleMapsPromise`;
