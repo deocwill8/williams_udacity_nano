@@ -33,24 +33,29 @@ class LocationsList extends Component {
     }
 
     render() {
-      let visibility = "show"; //figure this out //default should be hide
+      let visibility = "hide";
       
       if(this.props.menuVisibility){
         visibility = "show";
       }
 
       return (
-        <div id="locationListContainer" 
-          onMouseDown={this.props.handleMouseDown}
-          className={visibility} >
+        <div id="locationListContainer" className={visibility}>
+          <div>
           <input 
             onChange={(event) => this.handleChange(event.target.value)}
             type="text" 
             placeholder="Enter Search"
+            className="search-input"
           />
+          <button
+          onMouseDown={this.props.handleMouseDown}>
+          Close
+          </button>
+          </div>
           <ul>
             {this.props.locations.map((location) => (
-              <li key={location.title} onClick={() => {this.handleClick(location)}}>
+              <li className="listLocations" key={location.title} onClick={() => {this.handleClick(location)}}>
                   {location.title}
               </li> 
             ))}

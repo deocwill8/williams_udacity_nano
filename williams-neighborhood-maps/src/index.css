@@ -37,7 +37,7 @@ body, html{
   top: 55px;
   left: 0;
   right: 0px;
-  height: 90%;
+  width: 100%;
 }
 
 /* Location list */
@@ -52,6 +52,9 @@ body, html{
     transition: transform .3s cubic-bezier(0, .52, 0, 1);
     overflow: scroll;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #locationListContainer.hide {
@@ -63,13 +66,30 @@ body, html{
     overflow: hidden;
 }
 
-.filter-button{
-    color: white;
-    font-size: 1em;
-}
-
 ul{
     color: white;
     font-size: 1em;
     list-style: none;
+}
+
+.search-input{
+  width: 115px;
+  height: 15px;
+  margin-right: 40px;
+  border-radius: 20px;
+  border: 2px solid #360A14;
+  padding: 10px;
+}
+
+.listLocations{
+  border: 1px #fffdd0 solid;
+  height: 25px;
+  padding-top: 7px;
+  color: black;
+  background-color: #fffdd0;
+  width: 195px;
+  text-align: center;
+  border-radius: 20px;
+  margin-right: 35px;
+  margin-bottom: 15px;
 }

@@ -34,7 +34,7 @@ class Map extends Component {
 
         // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 39.165325, lng: -86.52638569999999},
+          center: {lat: 39.171574, lng: -86.51662399999998},
           zoom:15,
           mapTypeControl:false
         });
