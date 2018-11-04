@@ -12,7 +12,7 @@ class LocationsList extends Component {
 
     handleChange = (filter) => {
       this.props.showLocationMatches(filter);
-    }
+    };
 
     /*
     received help from @Forrest(FEND) in the #fend_proj_7 channel, 
@@ -22,7 +22,7 @@ class LocationsList extends Component {
     handleClick = (location) => {
       let selectedMarker = this.props.markers.find(marker => marker.title === location.title);
       window.google.maps.event.trigger(selectedMarker, 'click');
-    }
+    };
 
     render() {
       return (
@@ -44,7 +44,7 @@ class LocationsList extends Component {
           <label htmlFor="locationList"></label>
           <ul id="locationList">
             {this.props.locations.map((location) => (
-              <li role="button" tabIndex="2" className="list-locations" key={location.title} onClick={(event) => {this.handleClick(location)}}>
+              <li role="button" tabIndex="2" className="list-locations" key={location.title} onClick={() => {this.handleClick(location)}}>
                   {location.title}
               </li> 
             ))}

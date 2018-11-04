@@ -64,7 +64,7 @@ class Map extends Component {
           infoWindow.setContent("<p>loading</p>");
 
           //put information in the info window
-          this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues)
+          this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues);
 
           marker.addListener('click', () => {
             if(this.state.currentInfoWindow !== null){
@@ -92,9 +92,9 @@ class Map extends Component {
       })
     }
 
-    setCurrentInfoWindow(newInfoWindow){
-      this.setState({currentInfoWindow: newInfoWindow})
-    }
+  setCurrentInfoWindow(newInfoWindow) {
+    this.setState({currentInfoWindow: newInfoWindow});
+  }
  
   populateInfoWindow(infowindow, latLngValue) {
     const CLIENT_ID = 'D2OEMHIYC1QE003UWBNP5XN0F5W4DFTILR32QV4KL3JPYOG0';

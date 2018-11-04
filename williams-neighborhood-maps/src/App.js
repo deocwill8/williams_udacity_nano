@@ -17,21 +17,18 @@ class App extends Component {
       filteredLocations:[],
       query: ''
     }
-
-    this.showLocationMatches = this.showLocationMatches.bind(this);
-    this.updateMarkers = this.updateMarkers.bind(this);
   }
 
   componentDidMount(){
-    this.setState({filteredLocations: this.state.locations})
-  }
+    this.setState({filteredLocations: this.state.locations});
+  };
 
   showLocationMatches = (queryStr) => {
       let filteredLocations = this.state.locations.filter(currentLocation => currentLocation.title.toLowerCase().indexOf(queryStr.toLowerCase()) > -1 );
       this.setState({filteredLocations});
       this.setState({query: queryStr});
       this.updateMarkers(this.state.markers, queryStr);
-  }
+  };
 
   updateMarkers = (markers, query) => {
     //go through all the current markers 
@@ -43,7 +40,7 @@ class App extends Component {
         marker.setVisible(false);
       }
     })
-  }
+  };
 
   render() {
     return (
