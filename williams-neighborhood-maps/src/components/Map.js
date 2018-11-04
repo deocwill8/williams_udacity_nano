@@ -67,6 +67,7 @@ class Map extends Component {
           this.populateInfoWindow(infoWindow, this.state.forSquareLatLngValues);
 
           marker.addListener('click', () => {
+            //concept came from SO article https://stackoverflow.com/questions/3217031/how-to-check-if-an-infowindow-is-set-and-on-the-map
             if(this.state.currentInfoWindow !== null){
               this.state.currentInfoWindow.close();
             } 
