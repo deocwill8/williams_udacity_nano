@@ -28,7 +28,7 @@ class LocationsList extends Component {
       return (
         <section id="locationListContainer">
           <section role="group">
-          <h1>Indiana University</h1>
+          <h1 className="header-text">Indiana University</h1>
           <label htmlFor="searchInput" role="list"></label>
           <input 
             onChange={(event) => this.handleChange(event.target.value)}
@@ -50,11 +50,10 @@ class LocationsList extends Component {
             ))}
           </ul>
           </section>
-          <section>
-            <p>Map and map markers are provided by Google Maps Api</p>
-            <p>Information in the descriptions that show when marker is clicked 
-              is provided by the FourSquare Api. 
-            </p>
+          <section className="powered-by-container">
+            <h1 className="powered-by-text">Powered By</h1>
+            <p className="powered-by-text">Google Maps Api</p>
+            <p className="powered-by-text">FourSquare Api</p>
           </section>
 
         </section>
