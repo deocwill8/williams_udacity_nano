@@ -16,7 +16,8 @@ class Map extends Component {
 
     this.state = {
       forSquareLatLngValues: '',
-      currentInfoWindow: null
+      currentInfoWindow: null,
+      mapDidNotLoad: false
     }
 
    this.populateInfoWindow = this.populateInfoWindow.bind(this);
@@ -83,6 +84,12 @@ class Map extends Component {
         }
         this.props.updateMarkers(this.props.markers, this.props.queryString);
       })
+      .catch(error => {
+        console.log(error);
+        this.setState({mapDidNotLoad: true});
+        //google handles this pretty well, not sure if I should add more. The 
+        //page does not crash if the api fails.
+      })
     }
 
     setCurrentInfoWindow(newInfoWindow){
@@ -103,7 +110,7 @@ class Map extends Component {
       infowindow.setContent(venueName); 
     })
     .catch(error => {
-      infowindow.setContent("Could not get data from Foursquare Api"); 
+      infowindow.setContent("Could not get data from Foursquare Api. Please refresh the page"); 
     });
   }
 
