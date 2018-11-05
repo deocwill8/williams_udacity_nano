@@ -44,6 +44,15 @@ body, html{
   height: 100vh;
 }
 
+#error{
+  position: absolute;
+  right:0;
+  top: 0;
+  width: 75vw;
+  height: 100vh;
+  color: #360A14;
+}
+
 /* Location list */
 
 #locationListContainer{

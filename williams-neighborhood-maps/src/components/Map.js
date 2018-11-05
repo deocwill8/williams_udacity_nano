@@ -17,7 +17,7 @@ class Map extends Component {
     this.state = {
       forSquareLatLngValues: '',
       currentInfoWindow: null,
-      mapDidNotLoad: false
+      mapDidLoad: true
     }
 
    this.populateInfoWindow = this.populateInfoWindow.bind(this);
@@ -87,9 +87,7 @@ class Map extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({mapDidNotLoad: true});
-        //google handles this pretty well, not sure if I should add more. The 
-        //page does not crash if the api fails.
+        this.setState({mapDidLoad: false});
       })
     }
 
@@ -116,12 +114,22 @@ class Map extends Component {
   }
 
     render() {
-      return (
-        <section>
-          <label htmlFor="map"></label>
-          <div id="map" role="application"></div>
-        </section>
-      )
+      if(this.state.mapDidLoad){
+        return (
+          <section>
+            <label htmlFor="map"></label>
+            <div id="map" role="application"></div>
+          </section>
+        )
+      } else {
+        return (
+          <section>
+            <label htmlFor="error"></label>
+            <p id="error">Error loading Google Maps. Please refresh the page.</p>
+          </section>
+        )
+      }
+
     }
 }
 
