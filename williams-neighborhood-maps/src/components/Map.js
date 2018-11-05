@@ -32,6 +32,11 @@ class Map extends Component {
       googleMapsPromise.then(values => {
         let google = values;
 
+        //check if there were any errors loading the google api
+        window.gm_authFailure = () => {
+          this.setState({mapDidLoad: false});
+        }
+
         // show the map with Bloomington, In as the center
         this.map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.171574, lng: -86.51662399999998},
@@ -84,10 +89,6 @@ class Map extends Component {
           })
         }
         this.props.updateMarkers(this.props.markers, this.props.queryString);
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({mapDidLoad: false});
       })
     }
 
